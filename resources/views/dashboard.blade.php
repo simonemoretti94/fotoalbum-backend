@@ -23,4 +23,8 @@
         </div>
     </div>
 </div>
+
+@if ($photos)
+{{dd($photos)}}
+@endif
 @endsection

@@ -8,16 +8,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
 
-        Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
     });
 

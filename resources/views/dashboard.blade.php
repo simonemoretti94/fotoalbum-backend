@@ -24,7 +24,7 @@
     </div>
 </div>
 
-@if ($photos)
+{{-- @if ($photos)
 {{dd($photos)}}
-@endif
+@endif --}}
 @endsection

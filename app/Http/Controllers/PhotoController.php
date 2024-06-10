@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Models\Photo;
 
 class PhotoController extends Controller
 {
@@ -13,7 +13,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.index');
     }
 
     /**

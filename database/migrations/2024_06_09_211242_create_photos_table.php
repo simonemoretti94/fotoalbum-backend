@@ -16,11 +16,10 @@ return new class extends Migration
             $table->string('title', 100)->unique();
             $table->text('description', 2000)->nullable();
             $table->string('cover_image');
-            //$table->unsignedBigInteger('author_id'); // foreign key to users	|many to one|
+            $table->boolean('published')->nullable();
+            //$table->boolean('featured_photo')->nullable();	// in evidenza
+            //$table->boolean('draft')->nullable(); // bozza
             $table->string('slug')->nullable();
-            //$table->unsignedBigInteger('category_id')->nullable();  // foreign key to categories	|many to one|
-            $table->boolean('featured_photo')->nullable();	// in evidenza
-            $table->boolean('draft')->nullable(); // bozza
             $table->timestamp('upload_date')->useCurrent();
             $table->integer('file_size')->nullable();
             $table->string('format')->nullable();

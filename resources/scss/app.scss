@@ -15,7 +15,77 @@
 }
 
 
-section#section-top {}
+section#section-top {
+    & div#actions {
+        margin-bottom: 1.5rem;
+
+        >h6 {
+            color: var(--sidebar-writings);
+
+            @media screen and (max-width: 1044px) {
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            @media screen and (max-width: 796px) {
+                font-size: 15px;
+            }
+
+            @media screen and (max-width: 576px) {
+                margin-left: 1rem;
+            }
+
+            @media screen and (max-width: 400) {
+                margin-left: .5rem;
+            }
+        }
+
+        & p {
+            color: var(--sidebar-writings);
+            font-size: 15px;
+            letter-spacing: .5px;
+            text-align: center;
+            border-radius: 8px;
+            // border: solid 1px black;
+
+            >#sidebar-icon {
+                margin: auto .5rem;
+                color: var(--sidebar-writings);
+            }
+
+            & a {
+                text-decoration: none;
+                color: var(--sidebar-writings);
+            }
+
+            @media screen and (max-width: 1044px) {
+                text-align: center;
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: .2px;
+            }
+
+            @media screen and (max-width: 576px) {
+                width: 50%;
+            }
+
+        }
+
+        & p:hover {
+            color: white;
+            background-color: var(--sidebarButton-hover);
+
+            >#sidebar-icon {
+                color: white;
+            }
+
+            & a {
+                color: white;
+            }
+        }
+
+    }
+}
 
 section#section-left {
     border-right: solid .5px black;

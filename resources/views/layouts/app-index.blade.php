@@ -53,7 +53,7 @@
     @media screen and (max-width: 576px) {
         section#section-top {
             min-height: 40px;
-            display: block;
+            display: flex;
     }
         section#section-left {
             display: none;

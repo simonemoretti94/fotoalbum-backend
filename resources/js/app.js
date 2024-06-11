@@ -66,6 +66,7 @@ document.getElementById('p-edit').addEventListener('click', function (e) {
     }
 });
 
+
 /* delete section */
 let deletePhoto = true;
 
@@ -80,3 +81,19 @@ document.getElementById('p-delete').addEventListener('click', function (e) {
         deletePhoto = !deletePhoto;
     }
 });
+
+/* delete head section */
+/*
+let deletePhotoHead = true;
+
+document.getElementById('p-delete-head').addEventListener('click', function (e) {
+    console.log(e.target);
+    if (deletePhotoHead) {
+        document.getElementById('div-js-delete-head').classList.remove('d-none');
+        deletePhotoHead = !deletePhotoHead;
+    }
+    else {
+        document.getElementById('div-js-delete-head').classList.add('d-none');
+        deletePhotoHead = !deletePhotoHead;
+    }
+});*/

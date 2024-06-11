@@ -63,6 +63,16 @@
                 <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>
                 @endforeach
             </div>
+
+            {{-- <div id="actions">
+                <h6 class="text-danger">Danger Area</h6>
+                <p id="p-delete-head"><i id="sidebar-icon" class="fa-regular fa-trash-can"></i>Delete</p>
+                <div id="div-js-delete-head" class="d-none">
+                    @foreach ($photos as $key=>$photo)
+                    <x-modal :photo="$photo"></x-modal>
+                    @endforeach
+                </div>
+            </div> --}}
         </div>
         </div>
     </div>

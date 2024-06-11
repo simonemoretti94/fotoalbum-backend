@@ -2,13 +2,13 @@
     type="button"
     class="btn btn-link"
     data-bs-toggle="modal"
-    data-bs-target="#modalId"
+    data-bs-target="#modal-{{$photo->id}}"
 >
     {{$photo->id}}. {{$photo->title}}
 </p>
 <div
 class="modal fade"
-id="modalId"
+id="modal-{{$photo->id}}"
 tabindex="-1"
 data-bs-backdrop="static"
 data-bs-keyboard="false"

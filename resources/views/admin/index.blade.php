@@ -1,31 +1,62 @@
 @extends('layouts.app-index')
 
 @section('content-top')
-    <div id="actions" class="col-6">
-        <h6>Account actions</h6>
-        <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
-        <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a href="{{route('admin.dashboard')}}">Dashboard</a></p>
-    </div>
+    <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#Id2"
+        aria-controls="Id2"
+    >
+        Account actions
+    </button>
 
-    <div id="actions" class="col-6">
-        <h6 class="text-center">Photos actions</h6>
-        <div class="row">
+    <div
+        class="offcanvas offcanvas-start"
+        data-bs-backdrop="static"
+        tabindex="-1"
+        id="Id2"
+        aria-labelledby="staticBackdropLabel"
+    >
+        <div class="offcanvas-header">
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+            ></button>
+        </div>
+        <div class="offcanvas-body">
+        <div id="actions">
+
+            <h6 class="my-4">Account actions</h6>
+
+            <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
+            <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a href="{{route('admin.dashboard')}}">Dashboard</a></p>
+
+            <h6 class="my-4">Photos actions</h6>
+
             <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
             <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a href="{{route('admin.categories.index')}}">Categories</a></p>
-            <p id="p-show-head"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i><a>Show</a></p>
+
+            <p id="p-show-head"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
             <div id="div-js-show-head" class="d-none">
                 @foreach ($photos as $key=>$photo)
                 <p>{{$photo->id}}: <a href="{{route('admin.photos.show' , $photo)}}">{{$photo->title}}</a></p>
                 @endforeach
             </div>
-            <p id="p-edit-head"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a href="{{route('admin.photos.edit' , 1)}}">Edit</a></p>
+
+            <p id="p-edit-head"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</p>
             <div id="div-js-edit-head" class="d-none">
                 @foreach ($photos as $key=>$photo)
                 <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>
                 @endforeach
             </div>
         </div>
+        </div>
     </div>
+
+
 @endsection
 
 @section('content-left')
@@ -38,13 +69,13 @@
     <div id="actions">
         <h6>Photos actions</h6>
         <p><i id="sidebar-icon"  class="fa-solid fa-square-plus"></i><a href="{{route('admin.photos.create')}}">Create</a></p>
-        <p id="p-show"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i><a>Show</a></p>
+        <p id="p-show"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
         <div id="div-js-show" class="d-none">
             @foreach ($photos as $key=>$photo)
             <p>{{$photo->id}}: <a href="{{route('admin.photos.show' , $photo)}}">{{$photo->title}}</a></p>
             @endforeach
         </div>
-        <p id="p-edit"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a href="{{route('admin.photos.edit' , 1)}}">Edit</a></p>
+        <p id="p-edit"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</p>
         <div id="div-js-edit" class="d-none">
             @foreach ($photos as $key=>$photo)
             <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>

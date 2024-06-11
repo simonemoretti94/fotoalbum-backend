@@ -125,7 +125,7 @@
                 <thead>
                     <tr class="tr-data">
                         <th scope="col">Id</th>
-                        <th scope="col">Cover image</th>
+                        <th scope="col" id="th-image">Cover image</th>
                         <th scope="col" class="th-title">Title</th>
                         <th scope="col" class="th-title">Infos</th>
                         <th class="th-description" scope="col">Description</th>
@@ -139,7 +139,7 @@
                             <p class="text-center">{{$photo->id}}</p>
                         </td>
                         
-                        <td>
+                        <td id="td-image">
 
                         @if(Str::startsWith($photo->cover_image , 'https://'))
                             <img width="150" height="200" src="{{$photo->cover_image}}" alt="{{$photo->title}}">
@@ -194,6 +194,12 @@
             }
         }
     }
+
+    th#th-image, td#td-image {
+        @media screen and (max-width: 600px) {
+            display:none;
+        }
+    }
     
     td.td-description {
         overflow-y: scroll;
@@ -206,9 +212,9 @@
     }
     
     th.th-title,td.td-title {
-        @media screen and (max-width: 450px){
+        /* @media screen and (max-width: 450px){
             width: 20%;
-        }
+        } */
     }
     
     

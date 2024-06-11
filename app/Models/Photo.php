@@ -33,6 +33,6 @@ class Photo extends Model
 
     public function category(): BelongsTo
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

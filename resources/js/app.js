@@ -5,3 +5,8 @@ import * as bootstrap from 'bootstrap';
 import.meta.glob([
     '../img/**'
 ])
+
+document.getElementById('p-show').addEventListener('click', function (e) {
+    console.log(e.target);
+    document.getElementById('div-show').classList.remove('d-none');
+});

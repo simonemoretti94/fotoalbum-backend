@@ -51,6 +51,11 @@ section#section-left {
                 color: var(--sidebar-writings);
             }
 
+            & a {
+                text-decoration: none;
+                color: var(--sidebar-writings);
+            }
+
             @media screen and (max-width: 1044px) {
                 font-size: 12px;
                 font-weight: 500;
@@ -63,6 +68,10 @@ section#section-left {
             background-color: var(--sidebarButton-hover);
 
             >#sidebar-icon {
+                color: white;
+            }
+
+            & a {
                 color: white;
             }
         }

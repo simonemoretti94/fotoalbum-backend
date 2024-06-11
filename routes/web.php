@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\CategoryController as AdminCategories;
 use App\Http\Controllers\PhotoController as AdminPhotos;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,16 @@ Route::middleware(['auth', 'verified'])
 
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
+        /* PhotoController */
         Route::resource('photos', AdminPhotos::class);
+
+        /* CategoryController */
+        Route::resource('categories', AdminCategories::class);
+
+        /* Drafts route */
+        Route::get('/drafts', function () {
+            return view('admin.drafts');
+        });
 
     });
 

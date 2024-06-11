@@ -12,15 +12,16 @@
 @section('content-left')
 <div id="actions">
     <h6>Account actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i>Settings</p>
-    <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i>Dashboard</p>
+    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
+    <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a href="{{route('admin.dashboard')}}">Dashboard</a></p>
 </div>
 
 <div id="actions">
     <h6>Photos actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i>Drafts</p>
-    <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i>Categories</p>
-    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i>Settings</p>
+    <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
+    <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a href="{{route('admin.categories.index')}}">Categories</a></p>
+    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
+    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
 </div>
 
 @endsection

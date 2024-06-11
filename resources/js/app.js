@@ -65,3 +65,18 @@ document.getElementById('p-edit').addEventListener('click', function (e) {
         edit = !edit;
     }
 });
+
+/* delete section */
+let deletePhoto = true;
+
+document.getElementById('p-delete').addEventListener('click', function (e) {
+    console.log(e.target);
+    if (deletePhoto) {
+        document.getElementById('div-js-delete').classList.remove('d-none');
+        deletePhoto = !deletePhoto;
+    }
+    else {
+        document.getElementById('div-js-delete').classList.add('d-none');
+        deletePhoto = !deletePhoto;
+    }
+});

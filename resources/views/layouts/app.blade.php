@@ -78,10 +78,10 @@
                             <a class="nav-link font-large" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
                         @if(Auth::check())
-                            <li class="nav-item">
+                            <li class="nav-item {{Route::currentRouteName() == 'admin.photos.index' ? 'd-none' : ''}}">
                                 <a class="nav-link font-large" href="{{ route('admin.photos.index') }}">{{ __('Photos') }}</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item {{Request::is('admin/dashboard') == '' ? 'd-none' : ''}}">
                                 <a class="nav-link font-large" href="{{ route('admin.dashboard') }}">{{ __('Drafts') }}</a>
                             </li>
                         @endif
@@ -132,7 +132,7 @@
 
 <style>
     .b-right {
-        border-right: solid 1px black;
+        border-right: solid .5px rgba(0, 0, 0, 0.162);
     }
     h6#head-h6 {
         font-size: 15px;

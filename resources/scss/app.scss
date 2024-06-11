@@ -24,6 +24,7 @@ section#section-top {
         }
 
         & p {
+            cursor: pointer;
             color: var(--sidebar-writings);
             font-size: 15px;
             letter-spacing: .5px;
@@ -37,6 +38,7 @@ section#section-top {
             }
 
             & a {
+                cursor: pointer;
                 text-decoration: none;
                 color: var(--sidebar-writings);
             }
@@ -45,6 +47,7 @@ section#section-top {
         & p:hover {
             color: white;
             background-color: var(--sidebarButton-hover);
+            cursor: pointer;
 
             >#sidebar-icon {
                 color: white;
@@ -52,6 +55,7 @@ section#section-top {
 
             & a {
                 color: white;
+                cursor: pointer;
             }
         }
 
@@ -94,6 +98,7 @@ section#section-left {
 
         >h6 {
             color: var(--sidebar-writings);
+            cursor: pointer;
 
             @media screen and (max-width: 1044px) {
                 font-size: 12px;
@@ -111,6 +116,7 @@ section#section-left {
             letter-spacing: .5px;
             text-align: left;
             border-radius: 8px;
+            cursor: pointer;
             // border: solid 1px black;
 
             >#sidebar-icon {
@@ -121,6 +127,7 @@ section#section-left {
             & a {
                 text-decoration: none;
                 color: var(--sidebar-writings);
+                cursor: pointer;
             }
 
             @media screen and (max-width: 1044px) {
@@ -141,6 +148,11 @@ section#section-left {
             & a {
                 color: white;
             }
+        }
+
+        p#p-delete:hover {
+            color: white;
+            background-color: red;
         }
 
     }
@@ -164,6 +176,37 @@ section#section-left {
 
         & p:hover {
             background-color: #7b7b7b;
+            color: white;
+            border-bottom: .5px solid black;
+        }
+    }
+
+
+
+    div#div-js-delete {
+        width: 70%;
+        height: 100px;
+        overflow-y: scroll;
+        margin: auto;
+        padding: .5rem;
+        background-color: white;
+        border: solid 1px #7b7b7b;
+        border-radius: 5px;
+
+        & p {
+            color: red;
+            font-size: 10px;
+            padding-bottom: .25rem;
+            padding-left: .5rem;
+            border-bottom: .5px solid #F5F5F5;
+
+            >a {
+                color: red;
+            }
+        }
+
+        & p:hover {
+            background-color: red;
             color: white;
             border-bottom: .5px solid black;
         }

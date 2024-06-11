@@ -10,3 +10,18 @@ document.getElementById('p-show').addEventListener('click', function (e) {
     console.log(e.target);
     document.getElementById('div-js-show').classList.remove('d-none');
 });
+
+document.getElementById('p-show-head').addEventListener('click', function (e) {
+    console.log(e.target);
+    document.getElementById('div-js-show-head').classList.remove('d-none');
+});
+
+document.getElementById('p-edit').addEventListener('click', function (e) {
+    console.log(e.target);
+    document.getElementById('div-js-edit').classList.remove('d-none');
+});
+
+document.getElementById('p-edit-head').addEventListener('click', function (e) {
+    console.log(e.target);
+    document.getElementById('div-js-edit-head').classList.remove('d-none');
+});

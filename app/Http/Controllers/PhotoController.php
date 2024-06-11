@@ -49,7 +49,9 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('admin.edit', [
+            'photo' => $photo,
+        ]);
     }
 
     /**

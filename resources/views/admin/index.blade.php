@@ -101,7 +101,8 @@
         <p id="p-delete"><i id="sidebar-icon" class="fa-regular fa-trash-can"></i>Delete</p>
         <div id="div-js-delete" class="d-none">
             @foreach ($photos as $key=>$photo)
-            <p>{{$photo->id}}: <a href="{{route('admin.photos.destroy' , $photo)}}">{{$photo->title}}</a></p>
+            {{-- <p>{{$photo->id}}: <a href="{{route('admin.photos.destroy' , $photo)}}">{{$photo->title}}</a></p> --}}
+            <x-modal :photo="$photo"></x-modal>
             @endforeach
         </div>
     </div>
@@ -136,6 +137,7 @@
                     <tr class="row-data">
                         <td scope="row">
                             <p class="text-center">{{$photo->id}}</p>
+                            <!-- Modal start-->
                             <button
                             type="button"
                             class="btn btn-danger"
@@ -146,54 +148,55 @@
                         </button>
 
 
-                        <!-- Modal Body -->
-                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                        <div
-                            class="modal fade"
-                            id="modalId"
-                            tabindex="-1"
-                            data-bs-backdrop="static"
-                            data-bs-keyboard="false"
-                            
-                            role="dialog"
-                            aria-labelledby="modalTitleId"
-                            aria-hidden="true"
-                        >
+                            <!-- Modal Body start-->
                             <div
-                                class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                role="document"
+                                class="modal fade"
+                                id="modalId"
+                                tabindex="-1"
+                                data-bs-backdrop="static"
+                                data-bs-keyboard="false"
+                                
+                                role="dialog"
+                                aria-labelledby="modalTitleId"
+                                aria-hidden="true"
                             >
-                                <div class="modal-content">
-                                    <div class="modal-header d-flex">
-                                        <h5 class="col-10 text-center">Project {{$photo->id}} delete</h5>
-                                        <button
-                                            type="button"
-                                            class="btn-close col-2"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <div class="modal-body">Are you committed to delete this photo? Ater done, it won't be reversable</div>
-                                    <div class="modal-footer d-flex flex-column">
-                                        <button
-                                            type="button"
-                                            class="btn btn-secondary col-12"
-                                            data-bs-dismiss="modal"
-                                        >
-                                            Close
-                                        </button>
-                                        {{-- <button type="button" class="btn btn-primary">Delete</button> --}}
-                                        <form action="{{route('admin.photos.destroy', $photo)}}"  method="post" class="col-12">
-                                            @csrf
-                                            @method('DELETE')
-                                            {{-- because it responds to static function delete into route --}}
+                                <div
+                                    class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                    role="document"
+                                >
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex">
+                                            <h5 class="col-10 text-center">Project {{$photo->id}} delete</h5>
+                                            <button
+                                                type="button"
+                                                class="btn-close col-2"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"
+                                            ></button>
+                                        </div>
+                                        <div class="modal-body">Are you committed to delete this photo? Ater done, it won't be reversable</div>
+                                        <div class="modal-footer d-flex flex-column">
+                                            <button
+                                                type="button"
+                                                class="btn btn-secondary col-12"
+                                                data-bs-dismiss="modal"
+                                            >
+                                                Close
+                                            </button>
+                                            {{-- <button type="button" class="btn btn-primary">Delete</button> --}}
+                                            <form action="{{route('admin.photos.destroy', $photo)}}"  method="post" class="col-12">
+                                                @csrf
+                                                @method('DELETE')
+                                                {{-- because it responds to static function delete into route --}}
 
-                                            <button type="submit" class="btn btn-danger bg-gradient col-12" >Delete</button>
-                                        </form>
+                                                <button type="submit" class="btn btn-danger bg-gradient col-12" >Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <!-- Modal Body close-->
+                            <!-- Modal close-->
                         </td>
                         
                         <td>
@@ -214,7 +217,7 @@
                         <td>
                             <p><b>Created: </b><span>{{$photo->created_at}}</span></p>
                             <p><b>Updated: </b><span>{{$photo->updated_at}}</span></p>
-                            <p><b>Size: </b><span>{{$photo->file_size}}</span> | <b>Format: </b><span>{{$photo->format}}</span></p>
+                            <p><b>Size: </b><span>{{$photo->file_size}}kb</span> | <b>Format: </b><span>{{$photo->format}}</span></p>
                         </td>
                         <td class="td-description">{{$photo->description}}</td>
                     </tr>

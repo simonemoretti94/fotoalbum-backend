@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
-<section id="section-top" class="debug">
+<section id="section-top">
 @yield('content-top' , 'section top')
 </section>
 
 <section class="d-flex my-1">
         
-    <section id="section-left" class="debug " >
+    <section id="section-left">
         @yield('content-left' , 'section left')
     </section>
     <section id="section-right">
@@ -17,19 +16,19 @@
 
 </section>
 <style>
-    .debug {
-        border-right: solid 1px black;
-        border-bottom: solid 1px dashed;
-    }
     section#section-top {
             min-height: 40px;
             display: none;
     }
     section#section-left {
             width: 20%;
+            padding-top: 1rem;
+            min-height: calc(100vh - 100px);
     }
     section#section-right {
             width: 80%;
+            padding-top: 1rem;
+            min-height: calc(100vh - 100px);
     }
 
     @media screen and (max-width: 1044px) {

@@ -10,6 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
 
+    <!-- font awesome CDN -->
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    
+    <!-- (Optional) Use CSS or JS implementation -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+    
+
     <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/img/fotoalbum-icon.svg') }}">
 
     <!-- CSRF Token -->
@@ -58,12 +77,14 @@
                         <li class="nav-item">
                             <a class="nav-link font-large" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-large" href="{{url('/') }}">{{ __('Photos') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-large" href="{{url('/') }}">{{ __('Drafts') }}</a>
-                        </li>
+                        @if(Auth::check())
+                            <li class="nav-item">
+                                <a class="nav-link font-large" href="{{ route('admin.photos.index') }}">{{ __('Photos') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link font-large" href="{{ route('admin.dashboard') }}">{{ __('Drafts') }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -122,6 +143,9 @@
         font-weight: 400;
         font-style: normal;
         }
+    main {
+        min-height: calc(100vh - 100px);
+    }
 </style>
 
 </html>

@@ -1,1 +1,74 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// admin index
+
+:root {
+    --sidebar-background: #F5F5F5;
+    --sidebar-writings: #7b7b7b;
+    --sidebarButton-hover: #EBEBEB;
+}
+
+
+section#section-top {}
+
+section#section-left {
+    border-right: solid .5px black;
+    background-color: var(--sidebar-background);
+    padding: 0 .5rem 0 .5rem;
+
+    & div#actions {
+        margin-bottom: 1.5rem;
+
+        >h6 {
+            color: var(--sidebar-writings);
+
+            @media screen and (max-width: 1044px) {
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            @media screen and (max-width: 796px) {
+                font-size: 15px;
+            }
+        }
+
+        & p {
+            color: var(--sidebar-writings);
+            font-size: 15px;
+            letter-spacing: .5px;
+            text-align: left;
+            border-radius: 8px;
+            // border: solid 1px black;
+
+            >#sidebar-icon {
+                margin: auto .5rem;
+                color: var(--sidebar-writings);
+            }
+
+            @media screen and (max-width: 1044px) {
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: .2px;
+            }
+        }
+
+        & p:hover {
+            color: white;
+            background-color: var(--sidebarButton-hover);
+
+            >#sidebar-icon {
+                color: white;
+            }
+        }
+
+    }
+
+}
+
+section#section-right {}

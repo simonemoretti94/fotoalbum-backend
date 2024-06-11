@@ -32,35 +32,12 @@
         <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
         <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a href="{{route('admin.categories.index')}}">Categories</a></p>
         <p id="p-show"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i><a>Test show</a></p>
-        <div id="div-show" class="d-none">
+        <div id="div-js-show" class="d-none">
             @foreach ($photos as $key=>$photo)
             <p>{{$photo->id}}: <a href="{{route('admin.photos.show' , $photo)}}">{{$photo->title}}</a></p>
             @endforeach
         </div>
     </div>
-
-    <style>
-        div#div-show {
-            width: 70%;
-            margin: auto;
-            padding: .5rem;
-            background-color: white;
-            border: solid 1px #7b7b7b;
-            border-radius: 5px;
-            & p {
-                font-size: 10px;
-                padding-bottom: .25rem;
-                padding-left: .5rem;
-                border-bottom: .5px solid #F5F5F5;
-            }
-
-            & p:hover {
-                background-color: #7b7b7b;
-                color: white;
-                border-bottom: .5px solid black;
-            }
-        }
-    </style>
 
 @endsection
 

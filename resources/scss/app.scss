@@ -149,6 +149,28 @@ section#section-left {
 
     }
 
+    div [id^="div-js-"] {
+        width: 70%;
+        margin: auto;
+        padding: .5rem;
+        background-color: white;
+        border: solid 1px #7b7b7b;
+        border-radius: 5px;
+
+        & p {
+            font-size: 10px;
+            padding-bottom: .25rem;
+            padding-left: .5rem;
+            border-bottom: .5px solid #F5F5F5;
+        }
+
+        & p:hover {
+            background-color: #7b7b7b;
+            color: white;
+            border-bottom: .5px solid black;
+        }
+    }
+
 }
 
 section#section-right {}

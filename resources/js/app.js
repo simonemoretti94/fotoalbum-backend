@@ -8,5 +8,5 @@ import.meta.glob([
 
 document.getElementById('p-show').addEventListener('click', function (e) {
     console.log(e.target);
-    document.getElementById('div-show').classList.remove('d-none');
+    document.getElementById('div-js-show').classList.remove('d-none');
 });

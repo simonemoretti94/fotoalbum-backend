@@ -13,7 +13,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index', [
+            'photos' => Photo::where('user_id', auth()->id())->where('published', true)->orderByDesc('id')->paginate(),
+        ]);
     }
 
     /**

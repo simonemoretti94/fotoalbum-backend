@@ -43,5 +43,6 @@
 @section('content-right')
 <div class="container">
     <h1>hello guys</h1>
+    {{dd($photos)}}
 </div>
 @endsection

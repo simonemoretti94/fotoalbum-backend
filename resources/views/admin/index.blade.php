@@ -1,14 +1,25 @@
 @extends('layouts.app-index')
 
 @section('content-top')
+<style>
+    h6#offcanvas-trigger {
+        border: solid .5px rgba(186, 184, 184, 0.625);
+        padding: .3rem;
+        border-radius: 5px;
+    }
+    h6#offcanvas-trigger:hover {
+        color: white;
+        background-color: #EBEBEB;
+    } 
+</style>
     <button
-        class="btn btn-primary"
+        class="btn"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#Id2"
         aria-controls="Id2"
     >
-        Account actions
+        <h6 id="offcanvas-trigger">Account actions</h6>
     </button>
 
     <div

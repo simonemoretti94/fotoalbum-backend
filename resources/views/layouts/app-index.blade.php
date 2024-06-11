@@ -17,7 +17,7 @@
 </section>
 <style>
     section#section-top {
-            min-height: 40px;
+            min-height: 20px;
             display: none;
     }
     section#section-left {

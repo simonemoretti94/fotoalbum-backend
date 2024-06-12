@@ -255,6 +255,10 @@ section#section-right {
                 width: 100%;
             }
 
+            @media screen and (max-width: 450px) {
+                flex-direction: column;
+            }
+
 
             >div#subshow-right-l {
                 display: flex;
@@ -263,7 +267,11 @@ section#section-right {
                 width: 100%;
 
                 @media screen and (max-width: 576px) {
-                    width: 50%;
+                    width: 60%;
+                }
+
+                @media screen and (max-width: 450px) {
+                    width: 100%;
                 }
 
 
@@ -308,17 +316,23 @@ section#section-right {
             }
 
             div#subshow-right-r {
+                max-height: 300px;
                 display: none;
                 padding: .5rem;
+                overflow-y: scroll;
 
-                >p {
-                    overflow-y: scroll;
-                }
+                // >p {
+                //     overflow-y: scroll;
+                // }
 
                 @media screen and (max-width: 576px) {
-                    width: 50%;
+                    width: 40%;
                     display: block;
                     // border: solid 1px black;
+                }
+
+                @media screen and (max-width: 450px) {
+                    width: 100%;
                 }
             }
         }
@@ -331,6 +345,13 @@ section#section-right {
             padding-left: .2rem;
             font-size: medium;
             box-shadow: -1px 3px black;
+        }
+
+    }
+
+    & p#body-description {
+        @media screen and (max-width: 576px) {
+            display: none;
         }
     }
 }

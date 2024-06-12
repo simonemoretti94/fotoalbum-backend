@@ -105,7 +105,7 @@
     </div>
 </div>
 <div class="container">
-    <p class="text-dark border border-1">
+    <p id="body-description" class="text-dark border border-1">
         {{$photo->description}}
     </p>
 

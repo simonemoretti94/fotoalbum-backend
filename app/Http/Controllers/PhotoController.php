@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Models\Photo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -68,17 +69,19 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        dd($photo);
-        if(auth()->id() != $photo->user_id){
-            abort(403 , 'You are not allowed to delete this photo');
+        if(Auth::check()){
+            dd($photo);
+            if(auth()->id() != $photo->user_id){
+                abort(403 , 'You are not allowed to delete this photo');
+            }
+    
+            if($photo->cover_image){
+                Storage::delete($photo->cover_image);
+            }
+    
+            $photo->delete();
+    
+            return redirect('/admin/photos')->with('message', 'Photo deleted successfully');
         }
-
-        if($photo->cover_image){
-            Storage::delete($photo->cover_image);
-        }
-
-        $photo->delete();
-
-        return redirect('/admin/photos')->with('message', 'Photo deleted successfully');
     }
 }

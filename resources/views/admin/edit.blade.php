@@ -4,7 +4,7 @@
 
 <x-show-subheader :photo="$photo"></x-show-subheader>
 
-<div class="container">
+<div class="container mt-2">
     @include('components.validation-error')
 
     <form action="{{route('admin.photos.update' , $photo)}}" method="post" enctype="multipart/form-data">
@@ -14,9 +14,7 @@
         <div class="mb-3">
             <label for="" class="form-label">Title</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror " name="title" id="title"
-                aria-describedby="helptitle" placeholder="Write a title" value={{old('title', $photo->title)}}
-            required
-            />
+                aria-describedby="helptitle" placeholder="Write a title" value="{{$photo->title}}" required />
             <small id="helpId" class="form-text text-muted @error('title')
             d-none
         @enderror ">Write above a title</small>

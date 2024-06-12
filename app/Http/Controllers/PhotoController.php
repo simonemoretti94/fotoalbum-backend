@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PhotoController extends Controller
 {
@@ -77,7 +78,44 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        if(Auth::check()){
+            if(auth()->id() != $photo->user_id){
+                abort(403 , 'You are not allowed to edit this photo');
+            }
+
+            dd($request->all());
+            $validated = $request->validated();
+            $slug = Str::slug($request->title, '-');
+            $validated['slug'] = $slug;
+
+            dd($validated);
+
+            if ($request->has('cover_image')) {
+
+
+                if ($photo->cover_image) {
+                    Storage::delete($photo->cover_image);
+                }
+
+                /* getting img size in Kb */
+                $size = $request->file('cover_image')->getSize(); // getting file size in byte
+                $sizeInKb = $size / 1024; // converting into Kb
+                $validated['file_size'] = $sizeInKb; //assigning it
+
+                /* getting img extension */
+                $extension = $request->file('cover_image')->extension(); // getting file extension
+                $validated['format'] = $extension; //assigning it
+
+                $image_path = Storage::put('uploads', $validated['cover_image']);
+                $validated['cover_image'] = $image_path;
+            }
+
+            $photo->update($validated);
+            return redirect('/admin/photos')->with('status', 'Photo edit succeeded');
+        }
+        else {
+            abort(403 , 'You are not checked');
+        }
     }
 
     /**

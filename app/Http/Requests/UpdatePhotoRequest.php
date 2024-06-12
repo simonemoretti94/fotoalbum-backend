@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+
 
 class UpdatePhotoRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdatePhotoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +23,20 @@ class UpdatePhotoRequest extends FormRequest
      */
     public function rules(): array
     {
+        if (Str::startsWith($this->thumb, 'https://')) {
+            $validation = 'url';
+        } else {
+            $validation = 'image|max:1024';
+        }
+
         return [
-            //
+            'title' => 'required|min:10|max:100',
+            'description' => 'nullable|min:40|max:2000',
+            'cover_image' => 'required|'.$validation,
+            'category_id' => 'nullable|exists:categories,id',
+            'slug' => 'nullable',
+            'file_size' => 'nullable|max:1024',
+            'format' => 'nullable',
         ];
     }
 }

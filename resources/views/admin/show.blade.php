@@ -33,15 +33,16 @@
 
 <div class="container d-flex my-3">
     <div id="show-left" class="col-6">
-        <p class="text-center">
+        <div class="card p-2">
+
             @if(Str::startsWith($photo->cover_image , 'https://'))
-            <img width="300" height="200" src="{{$photo->cover_image}}" alt="{{$photo->title}}">
+            <img class="card-img-top" src="{{$photo->cover_image}}" alt="{{$photo->title}}">
             @else
-            <img width="300" height="200" src="{{asset('storage/' . $photo->cover_image)}}" alt="{{$photo->title}}">
+            <img class="card-img-top" src="{{asset('storage/' . $photo->cover_image)}}" alt="{{$photo->title}}">
             @endif
-        </p>
+        </div>
     </div>
-    <div id="show-right" class=" col-6">
+    <div id="show-right" class=" col">
         <p class="border-p">
             <span>
                 <b>
@@ -65,8 +66,31 @@
                 <b>
                     Size:
                 </b>
+                {{$photo->file_size}}Kb
             </span>
-            {{$photo->file_size}}Kb
+            |
+            <span>
+                <b>
+                    Format:
+                </b>
+                {{$photo->format}}
+            </span>
+        </p>
+
+        <p class="border-p">
+            <span>
+                <b>
+                    Created:
+                </b>
+                {{$photo->created_at}}
+            </span>
+            |
+            <span>
+                <b>
+                    Updated:
+                </b>
+                {{$photo->updated_at}}
+            </span>
         </p>
     </div>
 </div>
@@ -86,19 +110,6 @@
         @endif
     </div>
 </div>
-
-
-<style>
-    .border-p {
-        width: 40%;
-        border-bottom: solid 1.5px black;
-        border-left: solid 1.5px black;
-        padding-bottom: .5rem;
-        padding-left: .2rem;
-        font-size: medium;
-        box-shadow: -1px 3px black;
-    }
-</style>
 
 <script>
     let deleteShow = true;

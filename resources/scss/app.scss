@@ -150,7 +150,7 @@ section#section-left {
             }
         }
 
-        p#p-delete:hover {
+        p[id^="p-delete"]:hover {
             color: white;
             background-color: red;
         }
@@ -183,7 +183,8 @@ section#section-left {
 
 
 
-    div#div-js-delete {
+    // div#div-js-delete
+    div[id^="div-js-delete"] {
         width: 70%;
         height: 100px;
         overflow-y: scroll;

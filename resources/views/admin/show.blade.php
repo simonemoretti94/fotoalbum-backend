@@ -11,6 +11,7 @@
     <h6>Photos actions</h6>
     <p><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a
             href="{{route('admin.photos.edit' ,  $photo)}}">Edit</a></p>
+    <p><i id="sidebar-icon" class="fa-regular fa-images"></i><a href="{{route('admin.photos.index')}}">Photos</a></p>
     <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
     <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
             href="{{route('admin.categories.index')}}">Categories</a></p>
@@ -124,30 +125,30 @@
 <script>
     let deleteShow = true;
 
-    document.getElementById('p-delete-show').addEventListener('click', function (e) {
-        console.log(e.target);
-        if (deleteShow) {
-            document.getElementById('div-delete-js-show').classList.remove('d-none');
-            deleteShow = !deleteShow;
-        }
-        else {
-            document.getElementById('div-delete-js-show').classList.add('d-none');
-            deleteShow = !deleteShow;
-        }
-    });
+        document.getElementById('p-delete-show').addEventListener('click', function (e) {
+            console.log(e.target);
+            if (deleteShow) {
+                document.getElementById('div-delete-js-show').classList.remove('d-none');
+                deleteShow = !deleteShow;
+            }
+            else {
+                document.getElementById('div-delete-js-show').classList.add('d-none');
+                deleteShow = !deleteShow;
+            }
+        });
 
-    // test br
-    window.addEventListener('resize' , (e) => {
+        // test br
+        window.addEventListener('resize' , (e) => {
 
-        let resizeBool = window.innerWidth < 1440 ? true : false;
-        console.log(resizeBool);
-        if(resizeBool){
-            document.getElementById('br-break').classList.remove('d-none');
-        }
-        else{
-            document.getElementById('br-break').classList.add('d-none');
-        }
-    });
+            let resizeBool = window.innerWidth < 1440 ? true : false;
+            console.log(resizeBool);
+            if(resizeBool){
+                document.getElementById('br-break').classList.remove('d-none');
+            }
+            else{
+                document.getElementById('br-break').classList.add('d-none');
+            }
+        });
 
 </script>
 @endsection

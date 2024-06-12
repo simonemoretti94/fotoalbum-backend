@@ -42,7 +42,39 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        //
+        if(Auth::check()){
+           //dd($request->all());
+
+           $validated = $request->validated();
+
+           dd($validated);
+
+            $validated['slug'] = Str::slug($request->title, '-');
+            $validated['user_id'] = Auth::id();
+
+            if ($request->has('cover_image')) {
+                if (! Str::startsWith($request['cover_image'], 'https://')) {
+                    $img_path = Storage::put('uploads', $request->cover_image); //in case of img uploaded
+                    $validated['cover_image'] = $img_path;
+
+                }
+
+                /* getting img size in Kb */
+                $size = $request->file('cover_image')->getSize(); // getting file size in byte
+                $sizeInKb = $size / 1024; // converting into Kb
+                $validated['file_size'] = $sizeInKb; //assigning it
+
+                /* getting img extension */
+                $extension = $request->file('cover_image')->extension(); // getting file extension
+                $validated['format'] = $extension; //assigning it
+
+            }
+            return redirect('/admin/photos')->with('status', 'Photo creation succeeded');
+
+        }
+        else {
+            abort(403, 'You are not checked');
+        }
     }
 
     /**

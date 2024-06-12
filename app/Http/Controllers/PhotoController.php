@@ -68,9 +68,10 @@ class PhotoController extends Controller
             }
             $validated['slug'] = Str::slug($request->title, '-');
             $validated['user_id'] = Auth::id();
+            $validated['published'] = true;
 
             //dd($validated);
-            $photo = Photo::create($validated);
+            Photo::create($validated);
             return redirect('/admin/photos')->with('status', 'Photo creation succeeded');
 
         }

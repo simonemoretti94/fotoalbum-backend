@@ -12,6 +12,7 @@
     --sidebar-background: #F5F5F5;
     --sidebar-writings: #7b7b7b;
     --sidebarButton-hover: #EBEBEB;
+    --sidebarDelete-hover: red;
 }
 
 
@@ -184,7 +185,7 @@ section#section-left {
 
 
     // div#div-js-delete
-    div[id^="div-js-delete"] {
+    div[id^="div-delete-js"] {
         width: 70%;
         height: 100px;
         overflow-y: scroll;
@@ -196,19 +197,21 @@ section#section-left {
 
         & p {
             color: red;
+            background-color: var(--sidebarButton-hover);
+            text-decoration: none;
             font-size: 10px;
             padding-bottom: .25rem;
             padding-left: .5rem;
             border-bottom: .5px solid #F5F5F5;
 
-            >a {
-                color: red;
-            }
+            // >a {
+            //     color: red;
+            // }
         }
 
         & p:hover {
-            background-color: red;
             color: white;
+            background-color: var(--sidebarDelete-hover);
             border-bottom: .5px solid black;
         }
     }
@@ -228,10 +231,9 @@ section#section-right {
 
     & div#show-right {
         padding-left: .5rem;
-
-        & p {
-            margin-bottom: 1rem;
-        }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
 
         & p:nth-child(1),
         p:nth-child(2),

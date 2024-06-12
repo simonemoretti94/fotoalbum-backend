@@ -88,7 +88,7 @@
 <div id="actions">
     <h6 class="text-danger">Danger Area</h6>
     <p id="p-delete"><i id="sidebar-icon" class="fa-regular fa-trash-can"></i>Delete</p>
-    <div id="div-js-delete" class="d-none">
+    <div id="div-delete-js-index" class="d-none">
         @foreach ($photos as $key=>$photo)
         <x-modal :photo="$photo"></x-modal>
         @endforeach
@@ -164,11 +164,11 @@
     document.getElementById('p-delete').addEventListener('click', function (e) {
         console.log(e.target);
         if (deletePhoto) {
-            document.getElementById('div-js-delete').classList.remove('d-none');
+            document.getElementById('div-delete-js-index').classList.remove('d-none');
             deletePhoto = !deletePhoto;
         }
         else {
-            document.getElementById('div-js-delete').classList.add('d-none');
+            document.getElementById('div-delete-js-index').classList.add('d-none');
             deletePhoto = !deletePhoto;
         }
     });

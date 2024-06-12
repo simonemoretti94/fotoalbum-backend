@@ -19,7 +19,7 @@
 <div id="actions">
     <h6 class="text-danger">Danger Area</h6>
     <p id="p-delete-show"><i id="sidebar-icon" class="fa-regular fa-trash-can"></i>Delete</p>
-    <div id="div-js-delete-show" class="d-none">
+    <div id="div-delete-js-show" class="d-none">
         <x-modal :photo="$photo"></x-modal>
     </div>
 </div>
@@ -117,11 +117,11 @@
     document.getElementById('p-delete-show').addEventListener('click', function (e) {
         console.log(e.target);
         if (deleteShow) {
-            document.getElementById('div-js-delete-show').classList.remove('d-none');
+            document.getElementById('div-delete-js-show').classList.remove('d-none');
             deleteShow = !deleteShow;
         }
         else {
-            document.getElementById('div-js-delete-show').classList.add('d-none');
+            document.getElementById('div-delete-js-show').classList.add('d-none');
             deleteShow = !deleteShow;
         }
     });

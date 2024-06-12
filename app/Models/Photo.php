@@ -12,9 +12,10 @@ class Photo extends Model
 
     protected $fillable = [
         'title',
+        'user_id',
         'description',
         'cover_image',
-        'author_id',
+        //'author_id',
         'slug',
         'category_id',
         'published',

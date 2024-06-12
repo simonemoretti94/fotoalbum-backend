@@ -47,10 +47,7 @@ class PhotoController extends Controller
 
            $validated = $request->validated();
 
-           dd($validated);
-
-            $validated['slug'] = Str::slug($request->title, '-');
-            $validated['user_id'] = Auth::id();
+            //dd($validated);
 
             if ($request->has('cover_image')) {
                 if (! Str::startsWith($request['cover_image'], 'https://')) {
@@ -62,13 +59,18 @@ class PhotoController extends Controller
                 /* getting img size in Kb */
                 $size = $request->file('cover_image')->getSize(); // getting file size in byte
                 $sizeInKb = $size / 1024; // converting into Kb
-                $validated['file_size'] = $sizeInKb; //assigning it
-
+                $validated['file_size'] = round($sizeInKb , 2); //assigning it
                 /* getting img extension */
                 $extension = $request->file('cover_image')->extension(); // getting file extension
                 $validated['format'] = $extension; //assigning it
+                //dd($validated);
 
             }
+            $validated['slug'] = Str::slug($request->title, '-');
+            $validated['user_id'] = Auth::id();
+
+            //dd($validated);
+            $photo = Photo::create($validated);
             return redirect('/admin/photos')->with('status', 'Photo creation succeeded');
 
         }
@@ -144,7 +146,7 @@ class PhotoController extends Controller
                 /* getting img size in Kb */
                 $size = $request->file('cover_image')->getSize(); // getting file size in byte
                 $sizeInKb = $size / 1024; // converting into Kb
-                $validated['file_size'] = $sizeInKb; //assigning it
+                $validated['file_size'] = round($sizeInKb , 2); //assigning it
 
                 /* getting img extension */
                 $extension = $request->file('cover_image')->extension(); // getting file extension
@@ -187,3 +189,6 @@ class PhotoController extends Controller
     }
     
 }
+/*
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eum nulla amet tempora ad magnam eos odit dolore expedita vel perspiciatis similique accusantium impedit quam facere, exercitationem explicabo eligendi dignissimos rerum quisquam mollitia iure quibusdam? Aspernatur, quibusdam. Libero eum accusamus eius, modi perspiciatis, sint unde ipsum ab quam alias labore!
+*/

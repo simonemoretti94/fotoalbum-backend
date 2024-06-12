@@ -70,7 +70,7 @@ class PhotoController extends Controller
     public function destroy(Photo $photo)
     {
         if(Auth::check()){
-            dd($photo);
+            //dd($photo);
             if(auth()->id() != $photo->user_id){
                 abort(403 , 'You are not allowed to delete this photo');
             }

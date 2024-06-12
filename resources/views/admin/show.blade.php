@@ -55,7 +55,7 @@
                 </span>
                 {{$photo->slug}}
             </p>
-
+            @if($photo->category)
             <p class="border-p">
                 <span>
                     <b>
@@ -64,6 +64,7 @@
                 </span>
                 {{$photo->category->name}}
             </p>
+            @endif
 
             <p class="border-p">
                 <span>
@@ -111,7 +112,7 @@
     </p>
 
     <div class="metadata">
-        @if($photo->category_id)
+        @if($photo->category)
         <div style="background-color: #2c2c2c;">
             <p class="text-center text-white" style="background-color: #2c2c2c;"><b
                     class="me-2">Category:</b>{{$photo->category

@@ -27,7 +27,14 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check()){
+            return view('admin.create' , [
+                'categories' => Category::all(),
+            ]);
+        }
+        else {
+            abort(403, 'You are not checked');
+        }
     }
 
     /**

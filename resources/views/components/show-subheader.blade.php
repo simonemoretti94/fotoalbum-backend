@@ -3,6 +3,12 @@
         <h1 {{$attributes->merge([
             'class' => 'text-white pt-1'
             ])}}
-            >{{$photo->title}}</h1>
+            >
+            @if(isset($photo))
+            {{$photo->title}}
+            @else
+            {{$slot}}
+            @endif
+        </h1>
     </div>
 </div>

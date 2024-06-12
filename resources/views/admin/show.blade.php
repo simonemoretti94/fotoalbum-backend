@@ -9,8 +9,8 @@
 
 <div id="actions">
     <h6>Photos actions</h6>
-    <p id="p-edit"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a
-            href="{{route('admin.categories.edit' ,  $photo)}}">Edit</a></p>
+    <p><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a
+            href="{{route('admin.photos.edit' ,  $photo)}}">Edit</a></p>
     <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
     <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
             href="{{route('admin.categories.index')}}">Categories</a></p>

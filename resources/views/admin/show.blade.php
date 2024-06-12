@@ -31,8 +31,8 @@
 <x-show-subheader :photo="$photo"></x-show-subheader>
 
 
-<div class="container d-flex my-3">
-    <div id="show-left" class="col-6">
+<div id="container-section-right" class="container my-3">
+    <div id="show-left">
         <div class="card p-2">
 
             @if(Str::startsWith($photo->cover_image , 'https://'))
@@ -42,60 +42,70 @@
             @endif
         </div>
     </div>
-    <div id="show-right" class=" col">
-        <p class="border-p">
-            <span>
-                <b>
-                    Slug:
-                </b>
-            </span>
-            {{$photo->slug}}
-        </p>
+    <div id="show-right">
+        <div id="subshow-right-l">
 
-        <p class="border-p">
-            <span>
-                <b>
-                    Category:
-                </b>
-            </span>
-            {{$photo->category->name}}
-        </p>
 
-        <p class="border-p">
-            <span>
-                <b>
-                    Size:
-                </b>
-                {{$photo->file_size}}Kb
-            </span>
-            |
-            <span>
-                <b>
-                    Format:
-                </b>
-                {{$photo->format}}
-            </span>
-        </p>
+            <p class="border-p">
+                <span>
+                    <b>
+                        Slug:
+                    </b>
+                </span>
+                {{$photo->slug}}
+            </p>
 
-        <p class="border-p">
-            <span>
-                <b>
-                    Created:
-                </b>
-                {{$photo->created_at}}
-            </span>
-            |
-            <span>
-                <b>
-                    Updated:
-                </b>
-                {{$photo->updated_at}}
-            </span>
-        </p>
+            <p class="border-p">
+                <span>
+                    <b>
+                        Category:
+                    </b>
+                </span>
+                {{$photo->category->name}}
+            </p>
+
+            <p class="border-p">
+                <span>
+                    <b>
+                        Size:
+                    </b>
+                    {{$photo->file_size}}Kb
+                </span>
+                |
+                <span>
+                    <b>
+                        Format:
+                    </b>
+                    {{$photo->format}}
+                </span>
+            </p>
+
+            <p class="border-p">
+                <span>
+                    <b>
+                        Created:
+                    </b>
+                    {{$photo->created_at}}
+                </span>
+                <span id="vertical-separator">|</span>
+                <br id="br-break" class="d-none">
+                <span>
+                    <b>
+                        Updated:
+                    </b>
+                    {{$photo->updated_at}}
+                </span>
+            </p>
+        </div>
+        <div id="subshow-right-r">
+            <p class="text-center text-dark border border-1">
+                {{$photo->description}}
+            </p>
+        </div>
     </div>
 </div>
 <div class="container">
-    <p class="text-center text-dark border border-1">
+    <p class="text-dark border border-1">
         {{$photo->description}}
     </p>
 
@@ -125,5 +135,19 @@
             deleteShow = !deleteShow;
         }
     });
+
+    // test br
+    window.addEventListener('resize' , (e) => {
+
+        let resizeBool = window.innerWidth < 1440 ? true : false;
+        console.log(resizeBool);
+        if(resizeBool){
+            document.getElementById('br-break').classList.remove('d-none');
+        }
+        else{
+            document.getElementById('br-break').classList.add('d-none');
+        }
+    });
+
 </script>
 @endsection

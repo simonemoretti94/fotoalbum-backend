@@ -220,39 +220,117 @@ section#section-left {
 
 /* show.blade.php */
 section#section-right {
-    & div#show-left {
-        >div.card {
-            >img {
-                height: 250px;
+    div#container-section-right {
+        display: flex;
+
+        @media screen and (max-width: 576px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        & div#show-left {
+            width: 50%;
+
+            @media screen and (max-width: 576px) {
+                width: 80%;
+                margin-bottom: 1rem;
+            }
+
+            >div.card {
+
+                >img {
+                    height: 300px;
+
+                }
             }
         }
-    }
 
 
-    & div#show-right {
-        padding-left: .5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-
-        & p:nth-child(1),
-        p:nth-child(2),
-        & p:nth-child(3) {
+        & div#show-right {
             width: 50%;
+            padding-left: .5rem;
+            display: flex;
+
+            @media screen and (max-width: 576px) {
+                width: 100%;
+            }
+
+
+            >div#subshow-right-l {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                width: 100%;
+
+                @media screen and (max-width: 576px) {
+                    width: 50%;
+                }
+
+
+
+                & p:nth-child(1),
+                p:nth-child(2),
+                & p:nth-child(3) {
+                    width: 50%;
+
+                    @media screen and (max-width: 1044px) {
+                        width: 80%;
+                    }
+
+                    @media screen and (max-width: 756px) {
+                        width: 100%;
+                    }
+                }
+
+                & p:nth-child(4) {
+                    width: 80%;
+
+                    & span#vertical-separator {
+                        display: inline-block;
+                    }
+
+                    @media screen and (max-width: 1440px) {
+                        width: 50%;
+
+                        span#vertical-separator {
+                            display: none;
+                        }
+                    }
+
+                    @media screen and (max-width: 1044px) {
+                        width: 80%;
+                    }
+
+                    @media screen and (max-width: 756px) {
+                        width: 100%;
+                    }
+                }
+            }
+
+            div#subshow-right-r {
+                display: none;
+                padding: .5rem;
+
+                >p {
+                    overflow-y: scroll;
+                }
+
+                @media screen and (max-width: 576px) {
+                    width: 50%;
+                    display: block;
+                    // border: solid 1px black;
+                }
+            }
         }
 
-        & p:nth-child(4) {
-            width: 80%;
+        .border-p {
+            /* width: 40%; */
+            border-bottom: solid 1.5px black;
+            border-left: solid 1.5px black;
+            padding-bottom: .5rem;
+            padding-left: .2rem;
+            font-size: medium;
+            box-shadow: -1px 3px black;
         }
-    }
-
-    .border-p {
-        /* width: 40%; */
-        border-bottom: solid 1.5px black;
-        border-left: solid 1.5px black;
-        padding-bottom: .5rem;
-        padding-left: .2rem;
-        font-size: medium;
-        box-shadow: -1px 3px black;
     }
 }

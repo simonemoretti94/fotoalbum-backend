@@ -83,18 +83,23 @@ class PhotoController extends Controller
                 abort(403 , 'You are not allowed to edit this photo');
             }
 
-            dd($request->all());
+            //dd($request->all());
             $validated = $request->validated();
             $slug = Str::slug($request->title, '-');
             $validated['slug'] = $slug;
 
-            dd($validated);
+            //dd($validated);
 
             if ($request->has('cover_image')) {
 
 
                 if ($photo->cover_image) {
                     Storage::delete($photo->cover_image);
+                }
+                if (! Str::startsWith($request['cover_image'], 'https://')) {
+                    $img_path = Storage::put('uploads', $request->cover_image); //in case of img uploaded
+                    $validated['cover_image'] = $img_path;
+
                 }
 
                 /* getting img size in Kb */
@@ -106,8 +111,6 @@ class PhotoController extends Controller
                 $extension = $request->file('cover_image')->extension(); // getting file extension
                 $validated['format'] = $extension; //assigning it
 
-                $image_path = Storage::put('uploads', $validated['cover_image']);
-                $validated['cover_image'] = $image_path;
             }
 
             $photo->update($validated);

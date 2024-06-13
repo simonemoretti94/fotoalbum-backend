@@ -38,15 +38,25 @@
 
         {{-- copied cover image end --}}
 
-        <div class="mb-3">
-            <label for="category_id" class="form-label">Category</label>
-            <select class="form-select" name="category_id" id="category_id">
-                <option selected disabled>Select a category</option>
-                @foreach ($categories as $category )
-                <option value="{{$category->id}}">{{$category->name}}</option>
-                @endforeach
+        <div class="mb-3 d-flex gap-1">
+            <div class="col-9">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-select" name="category_id" id="category_id">
+                    <option selected disabled>Select a category</option>
+                    @foreach ($categories as $category )
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
 
-            </select>
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="published" class="form-label">Publish this photo?</label>
+                <select class="form-select" name="published" id="published">
+                    <option selected disabled>Choose an option</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
         </div>
 
 

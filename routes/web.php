@@ -3,16 +3,13 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\CategoryController as AdminCategories;
 use App\Http\Controllers\PhotoController as AdminPhotos;
+use App\Models\Photo;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
@@ -29,7 +26,9 @@ Route::middleware(['auth', 'verified'])
 
         /* Drafts route */
         Route::get('/drafts', function () {
-            return view('admin.drafts');
+            return view('admin.drafts' , [
+                'photos' => Photo::where('user_id', auth()->id())->where('published', false)->paginate(),
+            ]);
         });
 
     });

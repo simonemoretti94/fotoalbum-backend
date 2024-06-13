@@ -5,7 +5,7 @@
 <x-show-subheader>Categories section</x-show-subheader>
 
 <div class="container">
-    <div class="row row-cols row-cols-md-2 g-4">
+    <div class="row g-4">
         <div class="col">
             <form action="{{route('admin.categories.store')}}" method="post">
                 @csrf
@@ -13,13 +13,13 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper"
-                        placeholder="Fullstack" />
+                        placeholder="example: Landscapes" />
                     <small id="nameHelper" class="form-text text-muted">Type a category name</small>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-solid fa-plus"></i></button>
             </form>
         </div>
-        <div class="col">
+        <div class="col-xxl-9 col-xl-9 col-lg-12">
             <div class="table-responsive" style="max-height: calc(100vh - 160px); overflow-y: scroll;">
                 <table class="table table-light">
                     <thead>
@@ -37,7 +37,8 @@
                         <tr>
                             <td scope="row">{{$category->id}}</td>
                             <td>
-                                <form action="{{route('admin.categories.update' , $category)}}" method="post">
+                                <form id="form-edit-first" action="{{route('admin.categories.update' , $category)}}"
+                                    method="post">
                                     @csrf
                                     @method('PATCH')
 
@@ -46,7 +47,7 @@
                                             <input type="text" class="form-control" name="name" id="name"
                                                 aria-describedby="helpId" placeholder="" value="{{$category->name}}"
                                                 style="width: 80%;" />
-                                            <button type="submit"
+                                            <button id="button-edit-first" type="submit"
                                                 class="btn btn-sm btn-secondary bg-gradient text-sm ms-1"
                                                 style="width: 20%;">Edit</button>
                                         </div>
@@ -61,14 +62,20 @@
                             </td>
                             <td>
                                 <!-- Modal trigger button -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#modal-{{$category->id}}">
+                                <form id="form-edit-second" action="{{route('admin.categories.update' , $category)}}"
+                                    method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button id="button-edit-second" type="submit"
+                                        class="btn btn-secondary bg-gradient mb-1" style="width: 100%;">Edit</button>
+                                </form>
+                                <button type="button" class="btn btn-danger bg-gradient" data-bs-toggle="modal"
+                                    data-bs-target="#modal-{{$category->id}}" style="width: 100%;">
                                     Delete
                                 </button>
 
 
                                 <!-- Modal Body -->
-                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
                                 <div class="modal fade" id="modal-{{$category->id}}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalCategoryId" aria-hidden="true">
@@ -94,8 +101,6 @@
                                                     method="post" class="col-12">
                                                     @csrf
                                                     @method('DELETE')
-                                                    {{-- because it responds to static function delete into route --}}
-
                                                     <button type="submit"
                                                         class="btn btn-danger bg-gradient col-12">Delete</button>
                                                 </form>
@@ -121,5 +126,21 @@
 
 
 </div>
+<style>
+    form#form-edit-first,
+    button#button-edit-first {
+        @media screen and (max-width: 760px) {
+            display: none;
+        }
+    }
 
+    form#form-edit-second,
+    button#button-edit-second {
+        display: none;
+
+        @media screen and (max-width: 760px) {
+            display: block;
+        }
+    }
+</style>
 @endsection

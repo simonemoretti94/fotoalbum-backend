@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -31,7 +32,17 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        //dd($request->all());
+
+        $validated = $request->validated();
+        $temp_slug = Str::slug($request->name , '-');
+        $validated['slug'] = $temp_slug;
+
+        //dd($validated);
+        Category::create($validated);
+
+        
+        return to_route('admin.categories.index');
     }
 
     /**
@@ -55,7 +66,13 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        dd($request->all());
+        $validated = $request->validated();
+        $validated['slug'] = Str::slug($request->name , '-');
+
+        $category->update($validated);
+
+        return to_route('admin.categories.index');
     }
 
     /**
@@ -63,6 +80,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        dd($category);
+       $category->delete();
+
+       return to_route('admin.categories.index');
     }
 }

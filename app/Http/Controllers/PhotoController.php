@@ -68,7 +68,7 @@ class PhotoController extends Controller
             }
             $validated['slug'] = Str::slug($request->title, '-');
             $validated['user_id'] = Auth::id();
-            $validated['published'] = true;
+            $validated['published'] = $request['published'];
 
             //dd($validated);
             Photo::create($validated);

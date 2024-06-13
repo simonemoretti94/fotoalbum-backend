@@ -53,8 +53,8 @@
                 <label for="published" class="form-label">Publish this photo?</label>
                 <select class="form-select" name="published" id="published">
                     <option selected disabled>Choose an option</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
                 </select>
             </div>
         </div>

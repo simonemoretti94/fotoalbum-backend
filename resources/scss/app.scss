@@ -295,6 +295,8 @@ section#section-right {
                 }
 
                 & td:nth-child(2) {
+                    position: relative;
+
                     @media screen and (max-width: 780px) {
                         width: 30%;
                     }
@@ -309,6 +311,35 @@ section#section-right {
 
                         @media screen and (max-width: 600px) {
                             display: none;
+                        }
+                    }
+
+                    & span#publish_index {
+                        position: absolute;
+                        top: 3%;
+                        left: 3%;
+
+                        >a {
+                            text-decoration: none;
+                            color: white;
+
+                            >i {
+                                color: white;
+                            }
+                        }
+
+                    }
+
+                    & span#publish_index:hover {
+
+                        >a {
+                            color: red;
+                            ;
+
+                            >i {
+                                color: red;
+                                ;
+                            }
                         }
                     }
                 }

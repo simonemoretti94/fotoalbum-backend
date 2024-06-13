@@ -26,14 +26,17 @@ Route::middleware(['auth', 'verified'])
         Route::resource('categories', AdminCategories::class);
 
         /* Drafts route */
-        Route::get('/drafts', function () {
+        Route::get('/drafts/all', function () {
             return view('admin.drafts' , [
                 'photos' => Photo::where('user_id', auth()->id())->where('published', false)->paginate(),
             ]);
-        });
+        })->name('drafts.index');
 
-         /* Draft publish switching */
-         Route::get('/drafts/{id}', [AdminDrafts::class , 'publish']);
+         /* Draft publish */
+         Route::get('/drafts/publish/{id}', [AdminDrafts::class , 'publish'])->name('drafts.publish');
+
+         /* Draft publish */
+         Route::get('/drafts/unpublish/{id}', [AdminDrafts::class , 'unpublish'])->name('drafts.unpublish');
 
     });
 

@@ -33,7 +33,8 @@
 
             <h6 class="my-4">Photos actions</h6>
 
-            <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
+            <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a
+                    href="{{route('admin.drafts.index')}}">Drafts</a></p>
             <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
                     href="{{route('admin.categories.index')}}">Categories</a></p>
 
@@ -80,7 +81,8 @@
         <p><a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
         @endforeach
     </div>
-    <p><a href="drafts"><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i>Drafts</a></p>
+    <p><a href="{{route('admin.drafts.index')}}"><i id="sidebar-icon"
+                class="fa-solid fa-compass-drafting"></i>Drafts</a></p>
     <p><a href="{{route('admin.categories.index')}}"><i id="sidebar-icon"
                 class="fa-solid fa-layer-group"></i>Categories</a></p>
 </div>
@@ -208,6 +210,10 @@
                         @else
                         <img src="{{asset('storage/' . $photo->cover_image)}}" alt="{{$photo->title}}">
                         @endif
+                        <span id="publish_index"><a href="{{route('admin.drafts.unpublish' , $photo->id)}}"><i
+                                    class="fa-regular fa-flag"></i>
+                                Unpublish</a></span>
+
 
                     </td>
 

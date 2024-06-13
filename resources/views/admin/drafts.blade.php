@@ -16,11 +16,12 @@
                     alt="{{$photo->title}}" height="200">
                 @endif
 
-                <span id="publish_1"><a href="drafts/{{$photo->id}}"><i class="fa-regular fa-flag"></i>
+                <span id="publish_1"><a href="{{route('admin.drafts.publish' , $photo->id)}}"><i
+                            class="fa-regular fa-flag"></i>
                         Publish</a></span>
 
                 <div class="card-body" style="height: 100px; overflow-y: scroll;">
-                    <p><b>Title:</b> {{$photo->title}}</p>
+                    <p><b>Id: </b>{{$photo->id}} <b>Title:</b> {{$photo->title}}</p>
                     <p><b>Description:</b> {{$photo->description}}</p>
                 </div>
             </div>

@@ -222,10 +222,18 @@
                             <p>{{$photo->slug}}</p>
                         </td>
                         <td>
+                            <div id="info-hide">
+                                <p><b>Title: </b>{{$photo->title}}</p>
+                                <p><b>Slug: </b>{{$photo->slug}}</p>
+                            </div>
                             <p><b>Created: </b><span>{{$photo->created_at}}</span></p>
                             <p><b>Updated: </b><span>{{$photo->updated_at}}</span></p>
                             <p><b>Size: </b><span>{{$photo->file_size}}kb</span> | <b>Format:
                                 </b><span>{{$photo->format}}</span></p>
+
+                                {{-- <div id="div-hide">
+                                    {{$photo->description}}
+                                </div> --}}
                         </td>
                         <td>
                             <p>{{$photo->description}}</p>

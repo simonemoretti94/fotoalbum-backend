@@ -541,6 +541,10 @@ section#section-right {
                     @media screen and (max-width: 780px) {
                         width: 10%;
                     }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
+                    }
                 }
 
                 & th:nth-child(2) {
@@ -560,6 +564,10 @@ section#section-right {
                     //th title  
                     @media screen and (max-width: 780px) {
                         width: 30%;
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
                     }
                 }
 
@@ -584,7 +592,6 @@ section#section-right {
         & tbody {
 
             & tr#td-data {
-
                 height: 250px;
 
                 & td {
@@ -596,6 +603,10 @@ section#section-right {
                     // id
                     @media screen and (max-width: 780px) {
                         width: 10%;
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
                     }
                 }
 
@@ -657,10 +668,34 @@ section#section-right {
                     @media screen and (max-width: 780px) {
                         width: 30%;
                     }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
+                    }
                 }
 
                 & td:nth-child(4) {
                     overflow-y: auto;
+                    position: relative;
+
+                    // >div#info-hide {
+                    //     display: none;
+
+                    //     @media screen and (max-width: 576px) {
+                    //         display: block;
+                    //         position: absolute;
+                    //         top: 0%;
+                    //         left: 0%;
+                    //         height: 250px;
+                    //         overflow-y: scroll;
+                    //         background-color: black;
+                    //         color: white;
+                    //     }
+                    // }
+
+                    // >div#info-hide:hover {
+
+                    // }
 
                     // id
                     @media screen and (max-width: 780px) {
@@ -685,6 +720,7 @@ section#section-right {
 
                 }
             }
+
         }
     }
 }

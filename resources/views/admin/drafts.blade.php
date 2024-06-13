@@ -16,12 +16,8 @@
                     alt="{{$photo->title}}" height="200">
                 @endif
 
-                <span id="publish"><a href="admin/drafts/{{$photo->id}}"><i
-                            class="fa-regular fa-flag"></i><small>Publish</small></a></span>
-
-                <span id="published" class="d-none"><i class="fa-solid fa-flag"
-                        style="color: rgb(26, 190, 26);"></i><small
-                        style="color: rgb(26, 190, 26);">Published</small></span>
+                <span id="publish_1"><a href="drafts/{{$photo->id}}"><i class="fa-regular fa-flag"></i>
+                        Publish</a></span>
 
                 <div class="card-body" style="height: 100px; overflow-y: scroll;">
                     <p><b>Title:</b> {{$photo->title}}</p>
@@ -43,8 +39,7 @@
 </div>
 
 <style>
-    span#publish,
-    span#published {
+    span[id^="publish"] {
         position: absolute;
         top: 2%;
         left: 2%;
@@ -56,14 +51,21 @@
             >i {
                 color: white;
             }
-
-            & small {
-                color: white;
-                margin-left: .2rem;
-
-            }
         }
 
+    }
+
+    span[id^="publish"]:hover {
+
+        >a {
+            color: rgb(26, 190, 26);
+            ;
+
+            >i {
+                color: rgb(26, 190, 26);
+                ;
+            }
+        }
     }
 </style>
 

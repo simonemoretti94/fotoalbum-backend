@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])
         });
 
          /* Draft publish switching */
-         Route::get('drafts/{id}', [AdminDrafts::class , 'publish']);
+         Route::get('/drafts/{id}', [AdminDrafts::class , 'publish']);
 
     });
 

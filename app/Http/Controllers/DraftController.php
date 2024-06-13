@@ -12,9 +12,9 @@ class DraftController extends Controller
         $item->published = true;
         $item->save();
     
-        /*return view('admin.drafts' , [
+        return view('admin.drafts' , [
             'photos' => Photo::where('user_id', auth()->id())->where('published', false)->paginate(),
-        ]);*/
-        return back();
+        ]);
+        //return back();
     }
 }

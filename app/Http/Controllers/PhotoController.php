@@ -87,6 +87,7 @@ class PhotoController extends Controller
     {
         return view('admin.show', [
             'photo' => $photo,
+            'photos' => Photo::where('user_id', auth()->id())->where('published', true)->paginate(),
         ]);
     }
 

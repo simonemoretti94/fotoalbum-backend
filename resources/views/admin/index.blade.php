@@ -40,14 +40,14 @@
             <p id="p-show-head"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
             <div id="div-js-show-head" class="d-none">
                 @foreach ($photos as $key=>$photo)
-                <p>{{$photo->id}}: <a href="{{route('admin.photos.show' , $photo)}}">{{$photo->title}}</a></p>
+                <p><a href="{{route('admin.photos.show' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
                 @endforeach
             </div>
 
             <p id="p-edit-head"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</p>
             <div id="div-js-edit-head" class="d-none">
                 @foreach ($photos as $key=>$photo)
-                <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>
+                <p><a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
                 @endforeach
             </div>
         </div>
@@ -60,29 +60,29 @@
 @section('content-left')
 <div id="actions">
     <h6>Account actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
-    <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a href="{{route('admin.dashboard')}}">Dashboard</a></p>
+    <p><a href="{{route('profile.edit')}}"><i id="sidebar-icon" class="fa-solid fa-gear"></i>Settings</a></p>
+    <p><a href="{{route('admin.dashboard')}}"><i id="sidebar-icon" class="fa-solid fa-chart-line"></i>Dashboard</a></p>
 </div>
 
 <div id="actions">
     <h6>Photos actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-square-plus"></i><a href="{{route('admin.photos.create')}}">Create</a>
+    <p><a href="{{route('admin.photos.create')}}"><i id="sidebar-icon" class="fa-solid fa-square-plus"></i>Create</a>
     </p>
-    <p id="p-show"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
+    <p id="p-show"><a href="#"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</a></p>
     <div id="div-js-show" class="d-none">
         @foreach ($photos as $key=>$photo)
-        <p>{{$photo->id}}: <a href="{{route('admin.photos.show' , $photo)}}">{{$photo->title}}</a></p>
+        <p><a href="{{route('admin.photos.show' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
         @endforeach
     </div>
-    <p id="p-edit"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</p>
+    <p id="p-edit"><a href="#"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</a></p>
     <div id="div-js-edit" class="d-none">
         @foreach ($photos as $key=>$photo)
-        <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>
+        <p><a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
         @endforeach
     </div>
-    <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
-    <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
-            href="{{route('admin.categories.index')}}">Categories</a></p>
+    <p><a href="drafts"><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i>Drafts</a></p>
+    <p><a href="{{route('admin.categories.index')}}"><i id="sidebar-icon"
+                class="fa-solid fa-layer-group"></i>Categories</a></p>
 </div>
 
 <div id="actions">

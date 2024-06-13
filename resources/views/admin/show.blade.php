@@ -1,20 +1,75 @@
 @extends('layouts.app-index')
 
+@section('content-top')
+<style>
+    h6#offcanvas-trigger {
+        border: solid .5px rgba(186, 184, 184, 0.625);
+        padding: .3rem;
+        border-radius: 5px;
+    }
+
+    h6#offcanvas-trigger:hover {
+        color: white;
+        background-color: #EBEBEB;
+    }
+</style>
+
+<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#modalShow" aria-controls="Id2">
+    <h6 id="offcanvas-trigger">Account actions</h6>
+</button>
+
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="modalShow"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div id="actions">
+
+            <h6 class="my-4">Account actions</h6>
+
+            <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
+            <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a
+                    href="{{route('admin.dashboard')}}">Dashboard</a></p>
+
+            <h6 class="my-4">Photos actions</h6>
+
+            <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
+            <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
+                    href="{{route('admin.categories.index')}}">Categories</a></p>
+
+            <p id="p-show-head-single"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
+            <div id="div-js-show-head.single" class="d-none">
+                @foreach ($photos as $key=>$newPhoto)
+                <p><a href="{{route('admin.photos.show' , $newPhoto)}}">{{$newPhoto->id}}: {{$newPhoto->title}}</a></p>
+                @endforeach
+            </div>
+
+            <p id="p-edit-head-single"><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i>Edit</p>
+            <div id="div-js-edit-head-single" class="d-none">
+                <p>{{$photo->id}}: <a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->title}}</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
 @section('content-left')
 <div id="actions">
     <h6>Account actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-gear"></i><a href="{{route('profile.edit')}}">Settings</a></p>
-    <p><i id="sidebar-icon" class="fa-solid fa-chart-line"></i><a href="{{route('admin.dashboard')}}">Dashboard</a></p>
+    <p><a href="{{route('profile.edit')}}"><i id="sidebar-icon" class="fa-solid fa-gear"></i>Settings</a></p>
+    <p><a href="{{route('admin.dashboard')}}"><i id="sidebar-icon" class="fa-solid fa-chart-line"></i>Dashboard</a></p>
 </div>
 
 <div id="actions">
     <h6>Photos actions</h6>
-    <p><i id="sidebar-icon" class="fa-solid fa-pen-to-square"></i><a
-            href="{{route('admin.photos.edit' ,  $photo)}}">Edit</a></p>
-    <p><i id="sidebar-icon" class="fa-regular fa-images"></i><a href="{{route('admin.photos.index')}}">Photos</a></p>
-    <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a href="drafts">Drafts</a></p>
-    <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
-            href="{{route('admin.categories.index')}}">Categories</a></p>
+    <p><a href="{{route('admin.photos.edit' ,  $photo)}}"><i id="sidebar-icon"
+                class="fa-solid fa-pen-to-square"></i>Edit</a></p>
+    <p><a href="{{route('admin.photos.index')}}"><i id="sidebar-icon" class="fa-regular fa-images"></i>Photos</a></p>
+    <p><a href="drafts"><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i>Drafts</a></p>
+    <p><a href="{{route('admin.categories.index')}}"><i id="sidebar-icon"
+                class="fa-solid fa-layer-group"></i>Categories</a></p>
 </div>
 
 <div id="actions">
@@ -124,6 +179,7 @@
 </div>
 
 <script>
+    /* show left section */
     let deleteShow = true;
 
         document.getElementById('p-delete-show').addEventListener('click', function (e) {
@@ -150,6 +206,37 @@
                 document.getElementById('br-break').classList.add('d-none');
             }
         });
+
+
+    /* show top section */
+        let showHead = true;
+
+    document.getElementById('p-show-head-single').addEventListener('click', function (e) {
+        console.log(e.target);
+        if (showHead) {
+            document.getElementById('div-js-show-head.single').classList.remove('d-none');
+            showHead = !showHead;
+        }
+        else {
+            document.getElementById('div-js-show-head.single').classList.add('d-none');
+            showHead = !showHead;
+        }
+    });
+
+    /* edit head section */
+    let editHeadSingle = true;
+
+    document.getElementById('p-edit-head-single').addEventListener('click', function (e) {
+        console.log(e.target);
+        if (editHeadSingle) {
+            document.getElementById('div-js-edit-head-single').classList.remove('d-none');
+            editHeadSingle = !editHeadSingle;
+        }
+        else {
+            document.getElementById('div-js-edit-head-single').classList.add('d-none');
+            editHeadSingle = !editHeadSingle;
+        }
+    });
 
 </script>
 @endsection

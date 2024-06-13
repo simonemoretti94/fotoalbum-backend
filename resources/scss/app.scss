@@ -88,8 +88,8 @@ section#section-top {
     }
 }
 
+// shared between index and show
 section#section-left {
-    //border-right: solid .5px black;
     background-color: var(--sidebar-background);
     padding: 0 .5rem 0 .5rem;
 
@@ -118,17 +118,19 @@ section#section-left {
             text-align: left;
             border-radius: 8px;
             cursor: pointer;
-            // border: solid 1px black;
+            //border: dashed .5px black;
 
-            >#sidebar-icon {
+            & #sidebar-icon {
                 margin: auto .5rem;
                 color: var(--sidebar-writings);
             }
 
             & a {
+                display: block;
                 text-decoration: none;
                 color: var(--sidebar-writings);
                 cursor: pointer;
+                //background-color: blue;
             }
 
             @media screen and (max-width: 1044px) {

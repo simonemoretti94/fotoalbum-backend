@@ -66,10 +66,11 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        dd($request->all());
+        //dd($request->all());
         $validated = $request->validated();
         $validated['slug'] = Str::slug($request->name , '-');
 
+        //dd($validated);
         $category->update($validated);
 
         return to_route('admin.categories.index');
@@ -80,7 +81,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        dd($category);
+        //dd($category);
        $category->delete();
 
        return to_route('admin.categories.index');

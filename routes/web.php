@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\CategoryController as AdminCategories;
 use App\Http\Controllers\PhotoController as AdminPhotos;
+use App\Http\Controllers\DraftController as AdminDrafts;
 use App\Models\Photo;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'verified'])
                 'photos' => Photo::where('user_id', auth()->id())->where('published', false)->paginate(),
             ]);
         });
+
+         /* Draft publish switching */
+         Route::get('drafts/{id}', [AdminDrafts::class , 'publish']);
 
     });
 

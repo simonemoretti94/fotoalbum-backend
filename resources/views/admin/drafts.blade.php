@@ -15,8 +15,10 @@
                 <img class="card-img-top position-relative" src="{{asset('storage/' . $photo->cover_image)}}"
                     alt="{{$photo->title}}" height="200">
                 @endif
-                <span id="publish"><i id="i-publish" class="fa-regular fa-flag"></i><small>Publish</small></span>
-                <span id="published"><i id="i-published" class="fa-solid fa-flag"></i><small>Published</small></span>
+                <span id="publish"><i class="fa-regular fa-flag" style="color: white;"></i><small><a
+                            href="#">Published</a></small></span>
+                <span id="published"><i class="fa-solid fa-flag" style="color: rgb(26, 190, 26);"></i><small
+                        style="color: rgb(26, 190, 26);">Published</small></span>
                 <div class="card-body" style="height: 100px; overflow-y: scroll;">
                     <p><b>Title:</b> {{$photo->title}}</p>
                     <p><b>Description:</b> {{$photo->description}}</p>
@@ -43,14 +45,13 @@
         top: 2%;
         left: 2%;
 
-        >i[id^="i-publish"] {
-            font-size: 30px;
-            color: white;
-        }
-
         & small {
             margin-left: .2rem;
-            color: white;
+
+            >a {
+                text-decoration: none;
+                color: white;
+            }
         }
     }
 </style>

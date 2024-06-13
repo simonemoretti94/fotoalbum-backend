@@ -12,13 +12,13 @@ class DraftController extends Controller
         if(Auth::check()){
             $item = Photo::find($id);
             //dd($item);
-            $item->published = true;
+            $item->published = 1;
             //dd($item);
             $item->save();
-
+            
             return view('admin.drafts' , [
                 'photos' => Photo::where('user_id', auth()->id())->where('published', false)->paginate(),
-            ]);
+            ])->with('status', 'Photo publishing succeeded');
         }
         else {
             abort(403, 'You are not checked');

@@ -234,7 +234,7 @@
                 </tr>
                 @empty
                 <tr class="">
-                    <td scope="row" colspan="4">No record to show.</td>
+                    <td scope="row" colspan="5">No record to show.</td>
                 </tr>
 
                 @endforelse

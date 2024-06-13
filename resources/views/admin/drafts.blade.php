@@ -4,6 +4,11 @@
 
 <x-show-subheader>Drafts</x-show-subheader>
 <div class="container">
+    @if(session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+    @endif
     <div class="row">
         @forelse ($photos as $key=>$photo )
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 my-3 p-2">

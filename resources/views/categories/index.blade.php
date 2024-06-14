@@ -10,7 +10,7 @@
             <form action="{{route('admin.categories.store')}}" method="post">
                 @csrf
 
-                <div class="mb-3">
+                <div class="my-3">
                     <label for="" class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper"
                         placeholder="example: Landscapes" />

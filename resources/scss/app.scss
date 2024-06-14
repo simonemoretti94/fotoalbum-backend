@@ -605,6 +605,7 @@ div#div-categories {
         @media screen and (max-width: 576px) {
             & input {
                 width: 60%;
+                font-size: medium;
             }
 
             & button {
@@ -615,6 +616,7 @@ div#div-categories {
         @media screen and (max-width: 456px) {
             & input {
                 width: 50%;
+                font-size: small;
             }
 
             & button {

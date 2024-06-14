@@ -652,3 +652,33 @@ div#div-categories {
     }
 
 }
+
+/* edit.blade.php */
+
+div#edit-container {
+    padding-bottom: .5rem;
+
+    div#img-input-wrapper {
+        display: flex;
+
+        @media screen and (max-width: 500px) {
+            flex-direction: column;
+        }
+
+        div:nth-child(1) {
+            width: 50%;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+
+        div:nth-child(2) {
+            margin-left: .5rem;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+    }
+}

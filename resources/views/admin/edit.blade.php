@@ -4,7 +4,7 @@
 
 <x-show-subheader :photo="$photo"></x-show-subheader>
 
-<div class="container mt-2">
+<div id="edit-container" class="container mt-2">
     @include('components.validation-error')
 
     <form action="{{route('admin.photos.update' , $photo)}}" method="post" enctype="multipart/form-data">
@@ -26,9 +26,8 @@
             @enderror
         </div>
 
-        {{-- copied cover image start --}}
-        <div class="wrapper d-flex  mb-3 align-items-center">
-            <div class="col-3">
+        <div id="img-input-wrapper" class="mb-3 align-items-center">
+            <div>
                 @if(Str::startsWith($photo->cover_image , 'https://'))
                 <img id="section-img" class="w-100 d-block" src="{{$photo->cover_image}}" alt="{{$photo->title}}"
                     height="auto">
@@ -37,18 +36,14 @@
                     alt="{{$photo->title}}" height="auto">
                 @endif
             </div>
-            <div class="col-9 px-1">
-                <div class="form-group">
-                    <label for="cover_image"></label>
-                    <input class="form-control" type="file" name="cover_image" id="cover_image">
-                </div>
-                @error('cover_image')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+            <div class="form-group">
+                <label for="cover_image"></label>
+                <input class="form-control" type="file" name="cover_image" id="cover_image">
             </div>
+            @error('cover_image')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
-
-        {{-- copied cover image end --}}
 
         <div class="mb-3">
             <label for="category_id" class="form-label">Category</label>

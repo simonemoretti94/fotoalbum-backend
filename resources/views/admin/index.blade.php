@@ -33,10 +33,8 @@
 
                 <h6 class="my-4">Photos actions</h6>
 
-                <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a
-                        href="{{route('admin.drafts.index')}}">Drafts</a></p>
-                <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
-                        href="{{route('admin.categories.index')}}">Categories</a></p>
+                <p><i id="sidebar-icon" class="fa-solid fa-square-plus"></i><a href="{{route('admin.photos.create')}}">Create</a>
+                </p>
 
                 <p id="p-show-head"><i id="sidebar-icon" class="fas fa-eye fa-xs fa-fw"></i>Show</p>
                 <div id="div-js-show-head" class="d-none">
@@ -51,6 +49,13 @@
                     <p><a href="{{route('admin.photos.edit' , $photo)}}">{{$photo->id}}: {{$photo->title}}</a></p>
                     @endforeach
                 </div>
+
+                <p><i id="sidebar-icon" class="fa-solid fa-compass-drafting"></i><a
+                    href="{{route('admin.drafts.index')}}">Drafts</a></p>
+
+                <p><i id="sidebar-icon" class="fa-solid fa-layer-group"></i><a
+                    href="{{route('admin.categories.index')}}">Categories</a></p>
+   
             </div>
         </div>
     </div>

@@ -99,8 +99,11 @@
                                 </div>
                             </td>
                             <td>{{$category->slug}}</td>
-                            <td><span
-                                    class="text-white bg-primary bg-gradient py-1 px-2 rounded-2">{{$category->photos->count()}}</span>
+                            <td>
+                                <p class="text-center mt-2">
+                                    <span
+                                        class="text-white bg-primary bg-gradient py-1 px-2 rounded-2">{{$category->photos->count()}}</span>
+                                </p>
                             </td>
                             <td>
                                 <!-- Modal trigger button -->

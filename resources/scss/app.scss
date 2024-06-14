@@ -629,6 +629,8 @@ div#div-categories {
             background-color: #EBEBEB;
 
             @media screen and (max-width: 760px) {
+                width: 55%;
+                margin: auto auto auto 0;
                 display: block;
                 display: flex;
                 justify-content: center;
@@ -637,6 +639,15 @@ div#div-categories {
                 >button {
                     width: 50%;
                 }
+            }
+
+            @media screen and (max-width: 450px) {
+                width: 60%;
+            }
+
+            @media screen and (max-width: 360px) {
+                width: 100%;
+                margin: 0 0;
             }
         }
 

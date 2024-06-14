@@ -3,7 +3,7 @@
 @section('content')
 <x-show-subheader>Create a content</x-show-subheader>
 
-<div class="container mt-2">
+<div id="create-container" class="container mt-2">
     @include('components.validation-error')
 
     <form action="{{route('admin.photos.store')}}" method="post" enctype="multipart/form-data">
@@ -24,7 +24,6 @@
             @enderror
         </div>
 
-        {{-- copied cover image start --}}
         <div class="mb-3">
             <div class="form-group">
                 <label for="cover_image"></label>
@@ -36,10 +35,8 @@
             @enderror
         </div>
 
-        {{-- copied cover image end --}}
-
-        <div class="mb-3 d-flex gap-1">
-            <div class="col-9">
+        <div id="category-published-wrapper" class="mb-3 ">
+            <div>
                 <label for="category_id" class="form-label">Category</label>
                 <select class="form-select" name="category_id" id="category_id">
                     <option selected disabled>Select a category</option>
@@ -49,7 +46,7 @@
 
                 </select>
             </div>
-            <div class="col-3">
+            <div>
                 <label for="published" class="form-label">Publish this photo?</label>
                 <select class="form-select" name="published" id="published">
                     <option selected disabled>Choose an option</option>

@@ -653,6 +653,43 @@ div#div-categories {
 
 }
 
+/* create.blade.php */
+
+div#create-container {
+    padding-bottom: .5rem;
+
+    div#category-published-wrapper {
+        display: flex;
+
+        @media screen and (max-width: 500px) {
+            flex-direction: column;
+        }
+
+        div:nth-child(1) {
+            width: 60%;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+
+        div:nth-child(2) {
+            width: 40%;
+            margin-left: .5rem;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        * {
+            font-size: small;
+        }
+    }
+}
+
 /* edit.blade.php */
 
 div#edit-container {
@@ -679,6 +716,12 @@ div#edit-container {
             @media screen and (max-width: 500px) {
                 width: 100%;
             }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        * {
+            font-size: small;
         }
     }
 }

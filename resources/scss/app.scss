@@ -205,10 +205,6 @@ section#section-left {
             padding-bottom: .25rem;
             padding-left: .5rem;
             border-bottom: .5px solid #F5F5F5;
-
-            // >a {
-            //     color: red;
-            // }
         }
 
         & p:hover {
@@ -220,20 +216,21 @@ section#section-left {
 
 }
 
-/*
+/* index.blade.php table section right */
+
 section#section-right {
     table#table-index {
-        width: 100%;
-
         & thead {
-            width: 100%;
-
             >tr#th-data {
                 & th:nth-child(1) {
 
                     //th title  
                     @media screen and (max-width: 780px) {
                         width: 10%;
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
                     }
                 }
 
@@ -244,7 +241,7 @@ section#section-right {
                         width: 30%;
                     }
 
-                    @media screen and (max-width: 600px) {
+                    @media screen and (max-width: 700px) {
                         display: none;
                     }
                 }
@@ -254,6 +251,10 @@ section#section-right {
                     //th title  
                     @media screen and (max-width: 780px) {
                         width: 30%;
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
                     }
                 }
 
@@ -276,14 +277,11 @@ section#section-right {
         }
 
         & tbody {
-            width: 100%;
 
             & tr#td-data {
                 height: 250px;
-                // height: 15%;
 
                 & td {
-                    //height: 250px;
                     height: 100%;
                 }
 
@@ -292,6 +290,10 @@ section#section-right {
                     // id
                     @media screen and (max-width: 780px) {
                         width: 10%;
+                    }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
                     }
                 }
 
@@ -302,23 +304,24 @@ section#section-right {
                         width: 30%;
                     }
 
-                    @media screen and (max-width: 600px) {
+                    @media screen and (max-width: 700px) {
                         display: none;
                     }
 
 
                     >img {
-                        height: 100%;
+                        width: 250px;
+                        aspect-ratio: 1 / 1;
 
                         @media screen and (max-width: 600px) {
                             display: none;
                         }
                     }
 
-                    & span#publish_index {
+                    & span#span_publish_index {
                         position: absolute;
                         top: 3%;
-                        left: 3%;
+                        left: 4%;
 
                         >a {
                             text-decoration: none;
@@ -331,7 +334,7 @@ section#section-right {
 
                     }
 
-                    & span#publish_index:hover {
+                    & span#span_publish_index:hover {
 
                         >a {
                             color: red;
@@ -352,15 +355,54 @@ section#section-right {
                     @media screen and (max-width: 780px) {
                         width: 30%;
                     }
+
+                    @media screen and (max-width: 576px) {
+                        display: none;
+                    }
                 }
 
                 & td:nth-child(4) {
                     overflow-y: auto;
 
-                    // id
+                    & div#info-hide {
+                        display: none;
+
+                        & p#p_publish_index {
+
+                            >a {
+                                text-decoration: none;
+                                color: black;
+
+                                >i {
+                                    color: black;
+                                }
+                            }
+
+                        }
+
+                        & p#p_publish_index:hover {
+
+                            >a {
+                                color: red;
+                                ;
+
+                                >i {
+                                    color: red;
+                                    ;
+                                }
+                            }
+                        }
+
+                        @media screen and (max-width: 576px) {
+                            display: block;
+                        }
+                    }
+
+
                     @media screen and (max-width: 780px) {
                         width: 30%;
                     }
+
                 }
 
                 & td:nth-child(5) {
@@ -380,10 +422,10 @@ section#section-right {
 
                 }
             }
+
         }
     }
 }
-*/
 
 /* show.blade.php */
 section#section-right {
@@ -491,14 +533,9 @@ section#section-right {
                 padding: .5rem;
                 overflow-y: scroll;
 
-                // >p {
-                //     overflow-y: scroll;
-                // }
-
                 @media screen and (max-width: 576px) {
                     width: 40%;
                     display: block;
-                    // border: solid 1px black;
                 }
 
                 @media screen and (max-width: 450px) {
@@ -508,7 +545,6 @@ section#section-right {
         }
 
         .border-p {
-            /* width: 40%; */
             border-bottom: solid 1.5px black;
             border-left: solid 1.5px black;
             padding-bottom: .5rem;
@@ -531,196 +567,211 @@ section#section-right {
 /////////////////////////////////////
 /* table right index test css */
 
-section#section-right {
-    table#table-index {
-        & thead {
-            >tr#th-data {
-                & th:nth-child(1) {
+// section#section-right {
+//     table#table-index {
+//         & thead {
+//             >tr#th-data {
+//                 & th:nth-child(1) {
 
-                    //th title  
-                    @media screen and (max-width: 780px) {
-                        width: 10%;
-                    }
+//                     //th title  
+//                     @media screen and (max-width: 780px) {
+//                         width: 10%;
+//                     }
 
-                    @media screen and (max-width: 576px) {
-                        display: none;
-                    }
-                }
+//                     @media screen and (max-width: 576px) {
+//                         display: none;
+//                     }
+//                 }
 
-                & th:nth-child(2) {
+//                 & th:nth-child(2) {
 
-                    //th image  
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
+//                     //th image  
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
 
-                    @media screen and (max-width: 700px) {
-                        display: none;
-                    }
-                }
+//                     @media screen and (max-width: 700px) {
+//                         display: none;
+//                     }
+//                 }
 
-                & th:nth-child(3) {
+//                 & th:nth-child(3) {
 
-                    //th title  
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
+//                     //th title  
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
 
-                    @media screen and (max-width: 576px) {
-                        display: none;
-                    }
-                }
+//                     @media screen and (max-width: 576px) {
+//                         display: none;
+//                     }
+//                 }
 
-                & th:nth-child(4) {
+//                 & th:nth-child(4) {
 
-                    //th title  
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
-                }
+//                     //th title  
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
+//                 }
 
-                & th:nth-child(5) {
+//                 & th:nth-child(5) {
 
-                    // td description          
-                    @media screen and (max-width: 1000px) {
-                        display: none;
-                    }
-                }
-            }
-        }
+//                     // td description          
+//                     @media screen and (max-width: 1000px) {
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
 
-        & tbody {
+//         & tbody {
 
-            & tr#td-data {
-                height: 250px;
+//             & tr#td-data {
+//                 height: 250px;
 
-                & td {
-                    height: 100%;
-                }
+//                 & td {
+//                     height: 100%;
+//                 }
 
-                & td:nth-child(1) {
+//                 & td:nth-child(1) {
 
-                    // id
-                    @media screen and (max-width: 780px) {
-                        width: 10%;
-                    }
+//                     // id
+//                     @media screen and (max-width: 780px) {
+//                         width: 10%;
+//                     }
 
-                    @media screen and (max-width: 576px) {
-                        display: none;
-                    }
-                }
+//                     @media screen and (max-width: 576px) {
+//                         display: none;
+//                     }
+//                 }
 
-                & td:nth-child(2) {
-                    position: relative;
+//                 & td:nth-child(2) {
+//                     position: relative;
 
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
 
-                    @media screen and (max-width: 700px) {
-                        display: none;
-                    }
+//                     @media screen and (max-width: 700px) {
+//                         display: none;
+//                     }
 
 
-                    >img {
-                        width: 250px;
-                        aspect-ratio: 1 / 1;
+//                     >img {
+//                         width: 250px;
+//                         aspect-ratio: 1 / 1;
 
-                        @media screen and (max-width: 600px) {
-                            display: none;
-                        }
-                    }
+//                         @media screen and (max-width: 600px) {
+//                             display: none;
+//                         }
+//                     }
 
-                    & span#publish_index {
-                        position: absolute;
-                        top: 3%;
-                        left: 4%;
+//                     & span#span_publish_index {
+//                         position: absolute;
+//                         top: 3%;
+//                         left: 4%;
 
-                        >a {
-                            text-decoration: none;
-                            color: white;
+//                         >a {
+//                             text-decoration: none;
+//                             color: white;
 
-                            >i {
-                                color: white;
-                            }
-                        }
+//                             >i {
+//                                 color: white;
+//                             }
+//                         }
 
-                    }
+//                     }
 
-                    & span#publish_index:hover {
+//                     & span#span_publish_index:hover {
 
-                        >a {
-                            color: red;
-                            ;
+//                         >a {
+//                             color: red;
+//                             ;
 
-                            >i {
-                                color: red;
-                                ;
-                            }
-                        }
-                    }
-                }
+//                             >i {
+//                                 color: red;
+//                                 ;
+//                             }
+//                         }
+//                     }
+//                 }
 
-                & td:nth-child(3) {
-                    overflow-y: auto;
+//                 & td:nth-child(3) {
+//                     overflow-y: auto;
 
-                    // id
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
+//                     // id
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
 
-                    @media screen and (max-width: 576px) {
-                        display: none;
-                    }
-                }
+//                     @media screen and (max-width: 576px) {
+//                         display: none;
+//                     }
+//                 }
 
-                & td:nth-child(4) {
-                    overflow-y: auto;
-                    position: relative;
+//                 & td:nth-child(4) {
+//                     overflow-y: auto;
 
-                    // >div#info-hide {
-                    //     display: none;
+//                     & div#info-hide {
+//                         display: none;
 
-                    //     @media screen and (max-width: 576px) {
-                    //         display: block;
-                    //         position: absolute;
-                    //         top: 0%;
-                    //         left: 0%;
-                    //         height: 250px;
-                    //         overflow-y: scroll;
-                    //         background-color: black;
-                    //         color: white;
-                    //     }
-                    // }
+//                         & p#p_publish_index {
 
-                    // >div#info-hide:hover {
+//                             >a {
+//                                 text-decoration: none;
+//                                 color: black;
 
-                    // }
+//                                 >i {
+//                                     color: black;
+//                                 }
+//                             }
 
-                    // id
-                    @media screen and (max-width: 780px) {
-                        width: 30%;
-                    }
-                }
+//                         }
 
-                & td:nth-child(5) {
-                    width: 30%;
-                    overflow-y: auto;
+//                         & p#p_publish_index:hover {
 
-                    @media screen and (max-width: 1000px) {
-                        display: none;
-                    }
+//                             >a {
+//                                 color: red;
+//                                 ;
 
-                    >p {
-                        width: 100%;
-                        height: 100%;
-                        overflow-y: auto;
+//                                 >i {
+//                                     color: red;
+//                                     ;
+//                                 }
+//                             }
+//                         }
 
-                    }
+//                         @media screen and (max-width: 576px) {
+//                             display: block;
+//                         }
+//                     }
 
-                }
-            }
 
-        }
-    }
-}
+//                     @media screen and (max-width: 780px) {
+//                         width: 30%;
+//                     }
+
+//                 }
+
+//                 & td:nth-child(5) {
+//                     width: 30%;
+//                     overflow-y: auto;
+
+//                     @media screen and (max-width: 1000px) {
+//                         display: none;
+//                     }
+
+//                     >p {
+//                         width: 100%;
+//                         height: 100%;
+//                         overflow-y: auto;
+
+//                     }
+
+//                 }
+//             }
+
+//         }
+//     }
+// }

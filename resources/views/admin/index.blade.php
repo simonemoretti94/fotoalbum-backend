@@ -209,7 +209,7 @@
                             @else
                             <img src="{{asset('storage/' . $photo->cover_image)}}" alt="{{$photo->title}}">
                             @endif
-                            <span id="publish_index"><a href="{{route('admin.drafts.unpublish' , $photo->id)}}"><i
+                            <span id="span_publish_index"><a href="{{route('admin.drafts.unpublish' , $photo->id)}}"><i
                                         class="fa-regular fa-flag"></i>
                                     Unpublish</a></span>
 
@@ -229,11 +229,12 @@
                             <p><b>Created: </b><span>{{$photo->created_at}}</span></p>
                             <p><b>Updated: </b><span>{{$photo->updated_at}}</span></p>
                             <p><b>Size: </b><span>{{$photo->file_size}}kb</span> | <b>Format:
-                                </b><span>{{$photo->format}}</span></p>
-
-                                {{-- <div id="div-hide">
-                                    {{$photo->description}}
-                                </div> --}}
+                            </b><span>{{$photo->format}}</span></p>
+                            <div id="info-hide">
+                                <p id="p_publish_index"><a href="{{route('admin.drafts.unpublish' , $photo->id)}}"><i
+                                    class="fa-regular fa-flag"></i>
+                                Unpublish</a></p>
+                            </div>
                         </td>
                         <td>
                             <p>{{$photo->description}}</p>

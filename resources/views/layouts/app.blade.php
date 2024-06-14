@@ -88,7 +88,7 @@
                                 }}</a>
                         </li>
                         <li class="nav-item {{Request::is('admin/dashboard') == '' ? 'd-none' : ''}}">
-                            <a class="nav-link font-large" href="{{ route('admin.dashboard') }}">{{ __('Drafts') }}</a>
+                            <a class="nav-link font-large" href="{{ route('admin.drafts.index') }}">{{ __('Drafts') }}</a>
                         </li>
                         @endif
                     </ul>

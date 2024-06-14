@@ -4,7 +4,7 @@
 
 <x-show-subheader>Categories section</x-show-subheader>
 
-<div class="container">
+<div id="div-categories" class="container">
     <div class="row g-4">
         <div class="col">
             <form action="{{route('admin.categories.store')}}" method="post">
@@ -52,22 +52,24 @@
                                     
                                 </form>
                                 <div id="div-delete">
+                                    {{-- start modal --}}
+
                                     <!-- Modal trigger button -->
                                     <button type="button" class="btn btn-danger bg-gradient" data-bs-toggle="modal"
-                                    data-bs-target="#modal-{{$category->id}}">
+                                    data-bs-target="#modal-{{$category->id}}-hide" style="width: 100%;">
                                     Delete
                                     </button>
 
 
                                     <!-- Modal Body -->
-                                    <div class="modal fade" id="modal-{{$category->id}}" tabindex="-1"
+                                    <div class="modal fade" id="modal-{{$category->id}}-hide" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalCategoryId" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
                                     role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title text-center" id="modalTitleId">
+                                    <h5 class="modal-title text-center col-9" id="modalTitleId">
                                     Delete category #{{$category->id}}?
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -77,8 +79,8 @@
                                     done, it
                                     won't be reversable</div>
                                     <div class="modal-footer d-flex flex-column">
-                                    <button type="button" class="btn btn-secondary col-12"
-                                    data-bs-dismiss="modal">
+                                    <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal" style="width: 100%;">
                                     Close
                                     </button>
                                     <form action="{{route('admin.categories.destroy', $category)}}"
@@ -86,12 +88,14 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                    class="btn btn-danger bg-gradient col-12">Delete</button>
+                                    class="btn btn-danger bg-gradient" style="width: 100%;">Delete</button>
                                     </form>
                                     </div>
                                     </div>
                                     </div>
                                     </div>
+
+                                    {{-- end modal --}}
                                 </div>
                             </td>
                             <td>{{$category->slug}}</td>
@@ -101,43 +105,43 @@
                             <td>
                                 <!-- Modal trigger button -->
                                 <button type="button" class="btn btn-danger bg-gradient" data-bs-toggle="modal"
-                                    data-bs-target="#modal-{{$category->id}}" style="width: 100%;">
-                                    Delete
+                                data-bs-target="#modal-{{$category->id}}-hide-responsive" style="width: 100%;">
+                                Delete
                                 </button>
 
 
                                 <!-- Modal Body -->
-                                <div class="modal fade" id="modal-{{$category->id}}" tabindex="-1"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalCategoryId" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-center" id="modalTitleId">
-                                                    Delete category #{{$category->id}}?
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">Are you committed to delete this category? Ater
-                                                done, it
-                                                won't be reversable</div>
-                                            <div class="modal-footer d-flex flex-column">
-                                                <button type="button" class="btn btn-secondary col-12"
-                                                    data-bs-dismiss="modal">
-                                                    Close
-                                                </button>
-                                                <form action="{{route('admin.categories.destroy', $category)}}"
-                                                    method="post" class="col-12">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-danger bg-gradient col-12">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal fade" id="modal-{{$category->id}}-hide-responsive" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalCategoryId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title text-center" id="modalTitleId">
+                                Delete category #{{$category->id}}?
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">Are you committed to delete this category? Ater
+                                done, it
+                                won't be reversable</div>
+                                <div class="modal-footer d-flex flex-column">
+                                <button type="button" class="btn btn-secondary col-12"
+                                data-bs-dismiss="modal">
+                                Close
+                                </button>
+                                <form action="{{route('admin.categories.destroy', $category)}}"
+                                method="post" class="col-12">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                class="btn btn-danger bg-gradient col-12">Delete</button>
+                                </form>
+                                </div>
+                                </div>
+                                </div>
                                 </div>
                             </td>
                            
@@ -157,7 +161,7 @@
 
 
 </div>
-<style>
+{{-- <style>
 
     form#form-edit-second,
     button#button-edit-second {
@@ -233,5 +237,5 @@
     }
 
 
-</style>
+</style> --}}
 @endsection

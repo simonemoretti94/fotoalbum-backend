@@ -46,7 +46,9 @@
     {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
     @foreach ($categories as $category)
         @php
-            array_push($xValues, $category->name);
+            if(isset($category->photos)){
+                array_push($xValues, $category->name);
+            }
             array_push($yValues, $category->photos->count());
         @endphp
     @endforeach
@@ -63,10 +65,33 @@
       data: {
         labels: xValues,
         datasets: [{
-          data: yValues
+          data: yValues,
+          backgroundColor: 'transparent',
+            borderColor: 'primary',
+            pointBackgroundColor: 'primary',
+            pointBorderColor: 'primary',
         }]
       },
-      //options:{...}
+      options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false // Hide grid background lines
+        }
+      },
+      x: {
+        grid: {
+          display: false // Nasconde le linee della griglia dello sfondo
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false // Nasconde la legenda
+      }
+    }
+  }
     });
     </script>
 @endsection

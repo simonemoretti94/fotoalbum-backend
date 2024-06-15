@@ -804,11 +804,11 @@ section#graph {
 
     & h1#h1-graph {
         display: inline-block;
-        //border: solid .1px grey;
         padding: .5rem;
         transform: skewX(-3deg);
         text-shadow: 0 0 2px white;
         filter: drop-shadow(3px 3px 0 #EBEBEB);
+        border-top: .5px groove black;
 
         @media screen and (max-width: 450px) {
             font-size: 20px;

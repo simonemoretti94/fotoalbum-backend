@@ -173,7 +173,7 @@ let myChart = new Chart("myChart", {
         if(statusInfo) {
         statusInfo.remove();
         }
-        }, 1000); 
+        }, 3000); 
 
         setTimeout(function() {
         const h1Graph = document.getElementById('h1-graph');
@@ -182,7 +182,7 @@ let myChart = new Chart("myChart", {
         h1Graph.classList.remove('d-none');
         dbInfo.classList.remove('d-none');
         }
-        }, 1000); 
+        }, 3000); 
     });
 
 

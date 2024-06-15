@@ -43,10 +43,10 @@
     @endforeach
 <section id="graph">
     <div class="container">
-        <h3 id="h3-graph" class="d-none">Category to photos association</h3>
+        <h1 id="h1-graph" class="d-none sora-medium">Category to photos association</h1>
     </div>
 
-    <div id="chart-info-wrapper" class="container pt-5">
+    <div id="chart-info-wrapper" class="container pt-1">
         <div id="chart-container" class="container-fluid">
             <canvas id="myChart"></canvas>
         </div>
@@ -157,18 +157,17 @@ let myChart = new Chart("myChart", {
     document.addEventListener('DOMContentLoaded', (e) => {
         setTimeout(function() {
         const statusInfo = document.getElementById('status-info');
-        const h3Graph = document.getElementById('h3-graph');
         if(statusInfo) {
         statusInfo.remove();
         }
-        }, 5000); 
+        }, 1000); 
 
         setTimeout(function() {
-        const h3Graph = document.getElementById('h3-graph');
-        if(h3Graph) {
-        h3Graph.classList.remove('d-none');
+        const h1Graph = document.getElementById('h1-graph');
+        if(h1Graph) {
+        h1Graph.classList.remove('d-none');
         }
-        }, 5000); 
+        }, 1000); 
     });
 
 
@@ -176,8 +175,13 @@ let myChart = new Chart("myChart", {
     <style>
         section#graph {
             padding-top: 1rem;
-            & h3#h3-graph {
-                text-decoration: underline;
+            & h1#h1-graph {
+                display: inline-block;
+                //border: solid .1px grey;
+                padding: .5rem;
+                transform: skewX(-3deg);
+                text-shadow: 0 0 2px white;
+                filter: drop-shadow(3px 3px 0 #EBEBEB);
             }
 
             div#chart-info-wrapper {
@@ -221,6 +225,14 @@ let myChart = new Chart("myChart", {
                     }
                 }
             }
+        }
+
+        
+        .sora-medium {
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
         }
 
     </style>

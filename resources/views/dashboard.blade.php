@@ -33,7 +33,7 @@
     {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
     @foreach ($categories as $category)
         @php
-        if(isset($category->photos)){
+        if(!$category->photos->count() == 0){
             array_push($xValues, $category->name);
             array_push($yValues, $category->photos->count());
         }
@@ -82,60 +82,45 @@ let myChart = new Chart("myChart", {
         datasets: [{
         data: yValues,
         backgroundColor: 'transparent',
-        borderColor: 'primary',
-        pointBackgroundColor: 'primary',
+        borderColor: '#007bff',
+        pointBackgroundColor: '#007bff',
         pointBorderColor: 'blue',
         }]
     },
     options: {
-        responsive: true,
-        maintainAspectRatio: true, // needed in order to be responsive
-        tooltips: {
-            callbacks: {
-            label: function(tooltipItem, data) {
-            let label = data.labels[tooltipItem.index];
-            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-            if(value > 1){
-            return label + ': ' + value + ' Photos associated';
-            }
-            else {
-            return label + ': ' + value + ' Photo associated';
-            }
-            }
-            },
-        },
         scales: {
-            y: {
-            beginAtZero: true,
-            grid: {
-            display: false    // Hide grid background lines
-            }
+            yAxes: [{
+            ticks: {
+                min: -1,
+                max: 5,
+                beginAtZero: true
             },
-            x: {
-            grid: {
-            display: false    // Hide grid background lines
+            gridLines: {
+                display: true,
+            }
+            }],
+            xAxes: [{
+            gridLines: {
+                display: true,
             },
             ticks: {
-            font: {
-            size: 30 // Setting default font size
+                font: {
+                size: 30
+                }
             }
-            }
-            }
+            }]
         },
-        plugins: {
-            legend: {
-            display: true // Hide infos
-            },
-            title: {
+        title: {
             display: true,
-            text: 'Il Titolo Desiderato',
+            text: 'Category to photos association',
             font: {
-            size: 20 
+                size: 25
             }
-            },
         },
-    }
+    },
 });
+
+
 
     // resizing when page is loaded
     myChart.options.animation.onComplete = () => {

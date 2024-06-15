@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="status-info" class="container">
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Dashboard') }}
     </h2>
@@ -22,51 +22,44 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div id="chart-info-wrapper">
-        <div id="chart-container" class="container-fluid my-5">
+    {{-- Initializing arrays --}}
+    @php       
+        $xValues = [];
+        $yValues = []; 
+    @endphp
+
+    {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
+    @foreach ($categories as $category)
+        @php
+        if(isset($category->photos)){
+            array_push($xValues, $category->name);
+            array_push($yValues, $category->photos->count());
+        }
+        @endphp
+    @endforeach
+
+    <div id="chart-info-wrapper" class="container pt-5">
+        <div id="chart-container" class="container-fluid">
             <canvas id="myChart"></canvas>
         </div>
         <div id="chart-info">
             <p><b>info: 1</b>Info</p>
         </div>
     </div>
-
-    <div class="container">
-        {{-- @foreach ($photos as $photo)
-        {{$photo}}<br><br>
-        @endforeach --}}
-        {{-- @foreach ($categories as $category)
-            @if($category->photo)
-            {{dd($category->photo)}}<br><br>
-            @endif
-        @endforeach --}}
-        
-        {{-- Initializing arrays --}}
-        @php       
-        $xValues = [];
-        $yValues = []; 
-    @endphp
     
-    {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
-    @foreach ($categories as $category)
-        @php
-            if(isset($category->photos)){
-                array_push($xValues, $category->name);
-                array_push($yValues, $category->photos->count());
-            }
-        @endphp
-    @endforeach
-    </div>
+  
 </div>
+
 
 <script>
     const xValues = @json($xValues);
     const yValues = @json($yValues);
     console.log('values: ', xValues, yValues);
     
-// defining resize x-axis font resize function 
-function fontResize(chart) {
+    // defining resize x-axis font resize function 
+    function fontResize(chart) {
   let newFontSize;
   if (window.innerWidth < 600) {
     newFontSize = 8;
@@ -76,78 +69,96 @@ function fontResize(chart) {
     newFontSize = 16;
   }
 
-  chart.options.scales.x.ticks.font.size = newFontSize;
+  chart.options.scales.x.ticks.font.size = newFontSize; 
   chart.update();
 }
 
+
 // creating Chart
 let myChart = new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      data: yValues,
-      backgroundColor: 'transparent',
-      borderColor: 'primary',
-      pointBackgroundColor: 'primary',
-      pointBorderColor: 'blue',
-    }]
-  },
-  options: {
-    tooltips: {
-      callbacks: {
-        label: function(tooltipItem, data) {
-          let label = data.labels[tooltipItem.index];
-          let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-          if(value > 1){
-              return label + ': ' + value + ' Photos associated';
-          }
-          else {
-              return label + ': ' + value + ' Photo associated';
-          }
-        }
-      },
-      
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: {
-          display: false    // Hide grid background lines
-        }
-      },
-      x: {
-        grid: {
-          display: false    // Hide grid background lines
-        },
-        ticks: {
-          font: {
-            size: 15 // Setting default font size
-          }
-        }
-      }
-    },
-    plugins: {
-      legend: {
-        display: true // Hide infos
-      }
+    type: "line",
+    data: {
+        labels: xValues,
+        datasets: [{
+        data: yValues,
+        backgroundColor: 'transparent',
+        borderColor: 'primary',
+        pointBackgroundColor: 'primary',
+        pointBorderColor: 'blue',
+        }]
     },
     options: {
-    responsive: true,
-    maintainAspectRatio: false, // needed in order to be responsive
+        responsive: true,
+        maintainAspectRatio: true, // needed in order to be responsive
+        tooltips: {
+            callbacks: {
+            label: function(tooltipItem, data) {
+            let label = data.labels[tooltipItem.index];
+            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+            if(value > 1){
+            return label + ': ' + value + ' Photos associated';
+            }
+            else {
+            return label + ': ' + value + ' Photo associated';
+            }
+            }
+            },
+        },
+        scales: {
+            y: {
+            beginAtZero: true,
+            grid: {
+            display: false    // Hide grid background lines
+            }
+            },
+            x: {
+            grid: {
+            display: false    // Hide grid background lines
+            },
+            ticks: {
+            font: {
+            size: 30 // Setting default font size
+            }
+            }
+            }
+        },
+        plugins: {
+            legend: {
+            display: true // Hide infos
+            },
+            title: {
+            display: true,
+            text: 'Il Titolo Desiderato',
+            font: {
+            size: 20 
+            }
+            },
+        },
     }
-  }
 });
 
-// changing font-size when refreshing page
-fontResize(myChart);
+    // resizing when page is loaded
+    myChart.options.animation.onComplete = () => {
+        fontResize(myChart);
+    };
 
-// updating font-size while resizing the window
-window.addEventListener('resize', function() {
-  fontResize(myChart);
-});
+    // updating font-size while resizing the window
+    window.addEventListener('resize', function() {
+        fontResize(myChart);
+    });
 
-    </script>
+    /* head status info disappearing after some time */
+    document.addEventListener('DOMContentLoaded', (e) => {
+        setTimeout(function() {
+        var statusInfo = document.getElementById('status-info');
+        if(statusInfo) {
+        statusInfo.remove();
+        }
+        }, 5000); 
+    });
+
+
+</script>
     <style>
         div#chart-info-wrapper {
             display: flex;
@@ -158,6 +169,8 @@ window.addEventListener('resize', function() {
 
             div#chart-container {
                 width: 75%;
+                background-color:  #EBEBEB;
+                padding: 1rem 2rem;
                 @media screen and (max-width: 770px) {
                     width: 100%;
                 }
@@ -180,5 +193,6 @@ window.addEventListener('resize', function() {
                 }
             }
         }
+
     </style>
 @endsection

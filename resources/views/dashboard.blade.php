@@ -23,11 +23,11 @@
         </div>
     </div>
 
-    <div id="chart-info-wrapper" class="d-flex">
-        <div id="chart-container" class="col-9 container-fluid my-5">
+    <div id="chart-info-wrapper">
+        <div id="chart-container" class="container-fluid my-5">
             <canvas id="myChart"></canvas>
         </div>
-        <div id="chart-info" class="col-3">
+        <div id="chart-info">
             <p><b>info: 1</b>Info</p>
         </div>
     </div>
@@ -150,8 +150,17 @@ window.addEventListener('resize', function() {
     </script>
     <style>
         div#chart-info-wrapper {
+            display: flex;
+            flex-direction: row;
+            @media screen and (max-width: 770px) {
+                  flex-direction: column;
+            }
+
             div#chart-container {
                 width: 75%;
+                @media screen and (max-width: 770px) {
+                    width: 100%;
+                }
                 > div#chartjs-size-monitor {
                     width: 100%;
                     > canvas#myChart {
@@ -163,6 +172,12 @@ window.addEventListener('resize', function() {
 
             div#chart-info {
                 width: 25%;
+                display: flex;
+                flex-direction: column;
+                @media screen and (max-width: 770px) {
+                    width: 100%;
+                    flex-direction: row;
+                }
             }
         }
     </style>

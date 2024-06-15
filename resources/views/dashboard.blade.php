@@ -48,8 +48,8 @@
         @php
             if(isset($category->photos)){
                 array_push($xValues, $category->name);
+                array_push($yValues, $category->photos->count());
             }
-            array_push($yValues, $category->photos->count());
         @endphp
     @endforeach
     </div>
@@ -69,26 +69,40 @@
           backgroundColor: 'transparent',
             borderColor: 'primary',
             pointBackgroundColor: 'primary',
-            pointBorderColor: 'primary',
+            pointBorderColor: 'blue',
         }]
       },
       options: {
+        tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          let label = data.labels[tooltipItem.index];
+          let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          if(value > 1){
+              return label + ': ' + value + ' Photos associated';
+          }
+          else {
+            return label + ': ' + value + ' Photo associated';
+          }
+        }
+      }
+    },
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          display: false // Hide grid background lines
+          display: false    // Hide grid background lines
         }
       },
       x: {
         grid: {
-          display: false // Nasconde le linee della griglia dello sfondo
+          display: false    // Hide grid background lines
         }
       }
     },
     plugins: {
       legend: {
-        display: false // Nasconde la legenda
+        display: true // Hide infos
       }
     }
   }

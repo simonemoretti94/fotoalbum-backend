@@ -17,9 +17,12 @@ class DashboardController extends Controller
             ->get()
             ->groupBy('category_id');
 
+        $count = count(Photo::all());
+
         return view('dashboard', [
             'photos' => $photos,
-            'categories' => Category::all(),
+            'categories' => Category::orderBy('name', 'asc')->get(),
+            'count' => $count,
         ]);
     }
 }

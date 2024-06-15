@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
+<section id="general-info">
     <div id="status-info" class="container">
         <h2 class="fs-4 text-secondary my-4">
             {{ __('Dashboard') }}
@@ -24,6 +24,16 @@
             </div>
         </div>
     </div>
+
+    <div id="db-info" class="container">
+        <div>
+            <h4>General infos: </h4>
+        </div>
+        <div>
+            <p><b>You have: </b>{{$count}} photos into <a href="{{route('admin.photos.index')}}">database</a> , <b>{{count($photos)}} of {{$count}}</b> published; the remaining <b>{{$count - count($photos)}}</b> are waiting into <a href="{{route('admin.drafts.index')}}">drafts</a> section.</p>
+        </div>
+    </div>
+
 </section>
 
     {{-- Initializing arrays --}}

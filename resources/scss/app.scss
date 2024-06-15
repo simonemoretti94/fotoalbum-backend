@@ -742,6 +742,10 @@ div#edit-container {
 section#general-info {
     margin-top: 1rem;
 
+    @media screen and (max-width: 576px) {
+        padding: 0 .5rem;
+    }
+
     div#db-info {
         display: flex;
         flex-direction: row;

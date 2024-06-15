@@ -51,7 +51,7 @@
             <canvas id="myChart"></canvas>
         </div>
         <div id="chart-info">
-
+            
             @forelse ($categories as $category)
 
             @if (!$category->photos->count() == 0)        
@@ -69,6 +69,7 @@
             @empty
                 <p>No info available about category -> photos associations</p>
             @endforelse
+
         </div>
     </div>
 </section>
@@ -111,6 +112,8 @@ let myChart = new Chart("myChart", {
         }]
     },
     options: {
+        maintainAspectRatio: true,
+        responsive: true, 
         scales: {
             yAxes: [{
             ticks: {
@@ -172,68 +175,4 @@ let myChart = new Chart("myChart", {
 
 
 </script>
-    <style>
-        section#graph {
-            padding-top: 1rem;
-            & h1#h1-graph {
-                display: inline-block;
-                //border: solid .1px grey;
-                padding: .5rem;
-                transform: skewX(-3deg);
-                text-shadow: 0 0 2px white;
-                filter: drop-shadow(3px 3px 0 #EBEBEB);
-            }
-
-            div#chart-info-wrapper {
-                height: 350px;
-                display: flex;
-                flex-direction: row;
-                padding-bottom: 1rem;
-                @media screen and (max-width: 770px) {
-                      flex-direction: column;
-                }
-    
-                div#chart-container {
-                    width: 75%;
-                    background-color:  #ebebeb5a;
-                    padding: 1rem 2rem;
-                    @media screen and (max-width: 770px) {
-                        width: 100%;
-                    }
-                    > div#chartjs-size-monitor {
-                        width: 100%;
-                        > canvas#myChart {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                }
-    
-                div#chart-info {
-                    height: 100%;
-                    width: 25%;
-                    display: flex;
-                    flex-direction: column;
-                    overflow-y: scroll;
-    
-                    padding: 1rem .5rem;
-                    border: solid .5px rgba(0, 0, 0, 0.526);
-                    border-radius: 5px;
-                    @media screen and (max-width: 770px) {
-                        width: 100%;
-                        flex-direction: row;
-                    }
-                }
-            }
-        }
-
-        
-        .sora-medium {
-            font-family: "Sora", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 500;
-            font-style: normal;
-        }
-
-    </style>
 @endsection

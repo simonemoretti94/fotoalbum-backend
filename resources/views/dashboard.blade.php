@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div id="db-info" class="container">
+    <div id="db-info" class="container d-none">
         <div>
             <h4>General infos: </h4>
         </div>
@@ -177,8 +177,10 @@ let myChart = new Chart("myChart", {
 
         setTimeout(function() {
         const h1Graph = document.getElementById('h1-graph');
-        if(h1Graph) {
+        const dbInfo = document.getElementById('db-info');
+        if(h1Graph && dbInfo) {
         h1Graph.classList.remove('d-none');
+        dbInfo.classList.remove('d-none');
         }
         }, 1000); 
     });

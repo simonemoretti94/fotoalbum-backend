@@ -1,28 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="status-info" class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Dashboard') }}
-    </h2>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+<section>
+    <div id="status-info" class="container">
+        <h2 class="fs-4 text-secondary my-4">
+            {{ __('Dashboard') }}
+        </h2>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">{{ __('User Dashboard') }}</div>
+    
+                    <div class="card-body">
+                        @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                        @endif
+    
+                        {{ __('You are logged in!') }}
                     </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
     {{-- Initializing arrays --}}
     @php       
@@ -39,17 +41,38 @@
         }
         @endphp
     @endforeach
+<section id="graph">
+    <div class="container">
+        <h3 id="h3-graph" class="d-none">Category to photos association</h3>
+    </div>
 
     <div id="chart-info-wrapper" class="container pt-5">
         <div id="chart-container" class="container-fluid">
             <canvas id="myChart"></canvas>
         </div>
         <div id="chart-info">
-            <p><b>info: 1</b>Info</p>
+
+            @forelse ($categories as $category)
+
+            @if (!$category->photos->count() == 0)        
+            <p class="text-capitalize" ><b>{{$category->name}}</b></p>
+            <p>Associated with {{$category->photos->count()}} 
+                @if ($category->photos->count() == 1)
+                    photo
+                @else
+                    photos
+                @endif
+                </p>
+            <hr>
+            @endif
+
+            @empty
+                <p>No info available about category -> photos associations</p>
+            @endforelse
         </div>
     </div>
-    
-  
+</section>
+
 </div>
 
 
@@ -69,7 +92,7 @@
     newFontSize = 16;
   }
 
-  chart.defaults.global.defaultFontSize = newFontSize;
+  Chart.defaults.global.defaultFontSize = newFontSize;
   chart.update();
 }
 
@@ -133,9 +156,17 @@ let myChart = new Chart("myChart", {
     /* head status info disappearing after some time */
     document.addEventListener('DOMContentLoaded', (e) => {
         setTimeout(function() {
-        var statusInfo = document.getElementById('status-info');
+        const statusInfo = document.getElementById('status-info');
+        const h3Graph = document.getElementById('h3-graph');
         if(statusInfo) {
         statusInfo.remove();
+        }
+        }, 5000); 
+
+        setTimeout(function() {
+        const h3Graph = document.getElementById('h3-graph');
+        if(h3Graph) {
+        h3Graph.classList.remove('d-none');
         }
         }, 5000); 
     });
@@ -143,36 +174,51 @@ let myChart = new Chart("myChart", {
 
 </script>
     <style>
-        div#chart-info-wrapper {
-            display: flex;
-            flex-direction: row;
-            @media screen and (max-width: 770px) {
-                  flex-direction: column;
+        section#graph {
+            padding-top: 1rem;
+            & h3#h3-graph {
+                text-decoration: underline;
             }
 
-            div#chart-container {
-                width: 75%;
-                background-color:  #ebebeb5a;
-                padding: 1rem 2rem;
+            div#chart-info-wrapper {
+                height: 350px;
+                display: flex;
+                flex-direction: row;
+                padding-bottom: 1rem;
                 @media screen and (max-width: 770px) {
-                    width: 100%;
+                      flex-direction: column;
                 }
-                > div#chartjs-size-monitor {
-                    width: 100%;
-                    > canvas#myChart {
+    
+                div#chart-container {
+                    width: 75%;
+                    background-color:  #ebebeb5a;
+                    padding: 1rem 2rem;
+                    @media screen and (max-width: 770px) {
                         width: 100%;
-                        height: 100%;
+                    }
+                    > div#chartjs-size-monitor {
+                        width: 100%;
+                        > canvas#myChart {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
                 }
-            }
-
-            div#chart-info {
-                width: 25%;
-                display: flex;
-                flex-direction: column;
-                @media screen and (max-width: 770px) {
-                    width: 100%;
-                    flex-direction: row;
+    
+                div#chart-info {
+                    height: 100%;
+                    width: 25%;
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: scroll;
+    
+                    padding: 1rem .5rem;
+                    border: solid .5px rgba(0, 0, 0, 0.526);
+                    border-radius: 5px;
+                    @media screen and (max-width: 770px) {
+                        width: 100%;
+                        flex-direction: row;
+                    }
                 }
             }
         }

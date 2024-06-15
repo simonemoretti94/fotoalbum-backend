@@ -33,7 +33,7 @@ class UpdatePhotoRequest extends FormRequest
             'description' => 'nullable|min:40|max:2000',
             'cover_image' => 'required|'.$validation,
             'category_id' => 'nullable|exists:categories,id',
-            'published' => 'nullable|boolean',
+            'published' => 'required|boolean',
             'slug' => 'nullable',
             'file_size' => 'nullable|max:1024',
             'format' => 'nullable',

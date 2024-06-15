@@ -18,11 +18,15 @@ class DashboardController extends Controller
             ->groupBy('category_id');
 
         $count = count(Photo::all());
+        $published = count(Photo::where('user_id', auth()->id())
+            ->where('published', true)
+            ->get());
 
         return view('dashboard', [
             'photos' => $photos,
             'categories' => Category::orderBy('name', 'asc')->get(),
             'count' => $count,
+            'published' => $published,
         ]);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-
 class UpdatePhotoRequest extends FormRequest
 {
     /**
@@ -30,7 +29,7 @@ class UpdatePhotoRequest extends FormRequest
         }
 
         return [
-            'title' => 'required|min:10|max:100',
+            'title' => 'required|min:10|max:100|unique:photos,title',
             'description' => 'nullable|min:40|max:2000',
             'cover_image' => 'required|'.$validation,
             'category_id' => 'nullable|exists:categories,id',

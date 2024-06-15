@@ -28,58 +28,45 @@
     </div>
 
     <div class="container">
-        @foreach ($photos as $photo)
+        {{-- @foreach ($photos as $photo)
         {{$photo}}<br><br>
-        @endforeach
+        @endforeach --}}
+        {{-- @foreach ($categories as $category)
+            @if($category->photo)
+            {{dd($category->photo)}}<br><br>
+            @endif
+        @endforeach --}}
         
-
-        {{-- @php
+        {{-- Initializing arrays --}}
+        @php       
         $xValues = [];
-        $yValues = [];
-        foreach ($photos as $photo):
-           array_push($xValues, $photo->category_id->name)
-           array_push($yValues, $photo->category_id->photos->count())
-       
-        endforeach();
-        @endphp --}}
-        {{-- @php
-        $xValues = [];
-        $yValues = [];
-
-        foreach ($photos as $photo):
-        $category = array_search($photo['category_id'] , $categories); // Ottieni l'oggetto categoria
-
-        array_push($xValues, $category->name);
-        array_push($yValues, $category->photos->count());
-        endforeach;
-        @endphp --}}
-
-        {{-- const xValues = @json($xValues);
-        const yValues = @json($yValues);  these go into script --}}
+        $yValues = []; 
+    @endphp
+    
+    {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
+    @foreach ($categories as $category)
+        @php
+            array_push($xValues, $category->name);
+            array_push($yValues, $category->photos->count());
+        @endphp
+    @endforeach
     </div>
 </div>
 
 <script>
-  
-const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-const yValues = [7,8,8,9,9,9,10,11,14,14,15];
-console.log('values: ', xValues , yValues);
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      //backgroundColor:"rgba(0,0,255,1.0)",
-      //borderColor: "rgba(0,0,255,0.1)",
-      data: yValues
-    }]
-  },
-  //options:{...}
-});
-</script>
-
-{{-- @if ($photos)
-{{dd($photos)}}
-@endif --}}
+    const xValues = @json($xValues);
+    const yValues = @json($yValues);
+    console.log('values: ', xValues, yValues);
+    
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          data: yValues
+        }]
+      },
+      //options:{...}
+    });
+    </script>
 @endsection

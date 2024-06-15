@@ -30,7 +30,7 @@
             <h4>General infos: </h4>
         </div>
         <div>
-            <p><b>You have: </b>{{$count}} photos into <a href="{{route('admin.photos.index')}}">database</a> , <b>{{count($photos)}} of {{$count}}</b> published; the remaining <b>{{$count - count($photos)}}</b> are waiting into <a href="{{route('admin.drafts.index')}}">drafts</a> section.</p>
+            <p>You have: <b>{{$count}}</b> photos into <a href="{{route('admin.photos.index')}}">database</a> , <b>{{count($photos)}} of {{$count}}</b> published; the remaining <b>{{$count - count($photos)}}</b> are waiting into <a href="{{route('admin.drafts.index')}}">drafts</a> section.</p>
         </div>
     </div>
 

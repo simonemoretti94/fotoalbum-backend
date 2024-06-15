@@ -888,3 +888,47 @@ canvas#myChart {
     width: 100%;
     height: auto;
 }
+
+/* welcome.blade.php */
+div#jumbo-wrapper {
+    padding: 3rem;
+
+    @media screen and (max-width: 450px) {
+        padding: 1rem;
+    }
+}
+
+div#jumbo-container {
+
+    h3 {
+
+        font-size: calc(1.425rem + 1.3vw);
+        font-weight: 600;
+        line-height: 1.2;
+
+        @media screen and (max-width: 650px) {
+            font-size: calc(1.425rem + 0.5vw);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        @media screen and (max-width: 450px) {
+            font-size: 1.425rem;
+        }
+    }
+
+    p {
+        font-size: calc(1.275rem + 0.3vw);
+        font-weight: 400;
+
+        @media screen and (max-width: 650px) {
+            font-size: 1.275rem;
+            font-weight: 400;
+        }
+
+        @media screen and (max-width: 450px) {
+            font-size: 1rem;
+        }
+    }
+
+}

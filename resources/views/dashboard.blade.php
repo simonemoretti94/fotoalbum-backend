@@ -69,7 +69,7 @@
     newFontSize = 16;
   }
 
-  chart.options.scales.x.ticks.font.size = newFontSize; 
+  chart.defaults.global.defaultFontSize = newFontSize;
   chart.update();
 }
 
@@ -83,7 +83,7 @@ let myChart = new Chart("myChart", {
         data: yValues,
         backgroundColor: 'transparent',
         borderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
+        pointBackgroundColor: '#ffffff',
         pointBorderColor: 'blue',
         }]
     },
@@ -104,9 +104,7 @@ let myChart = new Chart("myChart", {
                 display: true,
             },
             ticks: {
-                font: {
-                size: 30
-                }
+                fontSize: 12,
             }
             }]
         },
@@ -154,7 +152,7 @@ let myChart = new Chart("myChart", {
 
             div#chart-container {
                 width: 75%;
-                background-color:  #EBEBEB;
+                background-color:  #ebebeb5a;
                 padding: 1rem 2rem;
                 @media screen and (max-width: 770px) {
                     width: 100%;

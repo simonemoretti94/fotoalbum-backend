@@ -186,5 +186,15 @@ let myChart = new Chart("myChart", {
     });
 
 
+/* test chart */
+function adjustChartHeight() {
+    var chartContainerWidth = document.getElementById('chart-container').offsetWidth;
+    var chartHeight = chartContainerWidth / 2; 
+    document.getElementById('myChart').style.height = chartHeight + 'px';
+}
+
+window.addEventListener('resize', adjustChartHeight);
+adjustChartHeight(); 
+
 </script>
 @endsection

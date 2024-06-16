@@ -29,7 +29,7 @@ class PhotoController extends Controller
 
         if ($request->has('search')) {
 
-            $filtered = Photo::whereNotNull('category_id')->with('category')->where('title', 'LIKE', '%'.$request->search)->where('published', true)->orderBy('title', 'asc')->paginate();
+            $filtered = Photo::whereNotNull('category_id')->with('category')->where('title', 'LIKE', '%'.$request->search.'%')->where('published', true)->orderBy('title', 'asc')->paginate();
 
             if ($filtered) {
 

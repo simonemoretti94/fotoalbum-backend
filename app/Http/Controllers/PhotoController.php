@@ -27,12 +27,11 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        if(Auth::check()){
-            return view('admin.create' , [
+        if (Auth::check()) {
+            return view('admin.create', [
                 'categories' => Category::all(),
             ]);
-        }
-        else {
+        } else {
             abort(403, 'You are not checked');
         }
     }
@@ -42,10 +41,10 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        if(Auth::check()){
-           //dd($request->all());
+        if (Auth::check()) {
+            //dd($request->all());
 
-           $validated = $request->validated();
+            $validated = $request->validated();
 
             //dd($validated);
 
@@ -59,7 +58,7 @@ class PhotoController extends Controller
                 /* getting img size in Kb */
                 $size = $request->file('cover_image')->getSize(); // getting file size in byte
                 $sizeInKb = $size / 1024; // converting into Kb
-                $validated['file_size'] = round($sizeInKb , 2); //assigning it
+                $validated['file_size'] = round($sizeInKb, 2); //assigning it
                 /* getting img extension */
                 $extension = $request->file('cover_image')->extension(); // getting file extension
                 $validated['format'] = $extension; //assigning it
@@ -72,10 +71,10 @@ class PhotoController extends Controller
 
             //dd($validated);
             Photo::create($validated);
+
             return redirect('/admin/photos')->with('status', 'Photo creation succeeded');
 
-        }
-        else {
+        } else {
             abort(403, 'You are not checked');
         }
     }
@@ -96,24 +95,23 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             //dd($photo);
-            if(auth()->id() != $photo->user_id){
-                abort(403 , 'You are not allowed to delete this photo');
+            if (auth()->id() != $photo->user_id) {
+                abort(403, 'You are not allowed to delete this photo');
             }
-            
+
             return view('admin.edit', [
                 'photo' => $photo,
                 'categories' => Category::all(),
             ]);
-            
+
+        } else {
+
+            abort(403, 'You are not checked');
+
         }
-        else{
-        
-            abort(403 , 'You are not checked');
-            
-        }
-        
+
     }
 
     /**
@@ -121,9 +119,9 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        if(Auth::check()){
-            if(auth()->id() != $photo->user_id){
-                abort(403 , 'You are not allowed to edit this photo');
+        if (Auth::check()) {
+            if (auth()->id() != $photo->user_id) {
+                abort(403, 'You are not allowed to edit this photo');
             }
 
             //dd($request->all());
@@ -134,7 +132,6 @@ class PhotoController extends Controller
             //dd($validated);
 
             if ($request->has('cover_image')) {
-
 
                 if ($photo->cover_image) {
                     Storage::delete($photo->cover_image);
@@ -148,7 +145,7 @@ class PhotoController extends Controller
                 /* getting img size in Kb */
                 $size = $request->file('cover_image')->getSize(); // getting file size in byte
                 $sizeInKb = $size / 1024; // converting into Kb
-                $validated['file_size'] = round($sizeInKb , 2); //assigning it
+                $validated['file_size'] = round($sizeInKb, 2); //assigning it
 
                 /* getting img extension */
                 $extension = $request->file('cover_image')->extension(); // getting file extension
@@ -157,10 +154,10 @@ class PhotoController extends Controller
             }
 
             $photo->update($validated);
+
             return redirect('/admin/photos')->with('status', 'Photo edit succeeded');
-        }
-        else {
-            abort(403 , 'You are not checked');
+        } else {
+            abort(403, 'You are not checked');
         }
     }
 
@@ -169,27 +166,25 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             //dd($photo);
-            if(auth()->id() != $photo->user_id){
-                abort(403 , 'You are not allowed to delete this photo');
+            if (auth()->id() != $photo->user_id) {
+                abort(403, 'You are not allowed to delete this photo');
             }
-    
-            if($photo->cover_image){
+
+            if ($photo->cover_image) {
                 Storage::delete($photo->cover_image);
             }
-    
+
             $photo->delete();
-    
+
             return redirect('/admin/photos')->with('message', 'Photo deleted successfully');
-        }
-        else{
-        
-            abort(403 , 'You are not checked');
-            
+        } else {
+
+            abort(403, 'You are not checked');
+
         }
     }
-    
 }
 /*
 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eum nulla amet tempora ad magnam eos odit dolore expedita vel perspiciatis similique accusantium impedit quam facere, exercitationem explicabo eligendi dignissimos rerum quisquam mollitia iure quibusdam? Aspernatur, quibusdam. Libero eum accusamus eius, modi perspiciatis, sint unde ipsum ab quam alias labore!

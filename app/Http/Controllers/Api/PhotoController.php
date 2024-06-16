@@ -10,7 +10,7 @@ class PhotoController extends Controller
 {
     public function index()
     {
-        $all = Photo::with('category')->where('published', true)->whereNotNull('category_id')->orderBy('title', 'asc')->paginate();
+        $all = Photo::whereNotNull('category_id')->with('category')->where('published', true)->orderBy('title', 'asc')->paginate();
         if ($all) {
             return response()->json([
                 'success' => true,
@@ -28,7 +28,8 @@ class PhotoController extends Controller
     {
 
         if ($request->has('search')) {
-            $filtered = Photo::with('category')->where('published', true)->whereNotNull('category_id')->orderBy('title', 'asc')->where('title', 'LIKE', '%'.$request->search)->paginate();
+
+            $filtered = Photo::whereNotNull('category_id')->with('category')->where('title', 'LIKE', '%'.$request->search)->where('published', true)->orderBy('title', 'asc')->paginate();
 
             if ($filtered) {
 
@@ -43,8 +44,9 @@ class PhotoController extends Controller
                     'results' => '404 indexFiltered API (Block search), results not found',
                 ], 404);
             }
+
         } else {
-            $all = Photo::with('category')->where('published', true)->whereNotNull('category_id')->orderBy('title', 'asc')->paginate();
+            $all = Photo::whereNotNull('category_id')->with('category')->where('published', true)->orderBy('title', 'asc')->paginate();
 
             if ($all) {
                 return response()->json([

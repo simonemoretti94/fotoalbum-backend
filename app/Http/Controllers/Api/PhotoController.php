@@ -29,6 +29,7 @@ class PhotoController extends Controller
 
         if ($request->has('search')) {
             $filtered = Photo::with('category')->where('published', true)->whereNotNull('category_id')->orderBy('title', 'asc')->where('title', 'LIKE', '%'.$request->search)->paginate();
+
             if ($filtered) {
 
                 return response()->json([
@@ -39,7 +40,7 @@ class PhotoController extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'results' => '404 indexFiltered API, results not found',
+                    'results' => '404 indexFiltered API (Block search), results not found',
                 ], 404);
             }
         } else {
@@ -53,9 +54,26 @@ class PhotoController extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'response' => '404 indexFiltered API, results not found',
+                    'response' => '404 indexFiltered API (Block !search), results not found',
                 ], 404);
             }
+        }
+    }
+
+    public function show($id)
+    {
+        $showItem = Photo::find($id);
+
+        if ($showItem) {
+            return response()->json([
+                'success' => true,
+                'results' => $showItem,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => '404 show API, result not found',
+            ], 404);
         }
     }
 }

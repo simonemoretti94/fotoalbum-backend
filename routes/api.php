@@ -9,3 +9,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('photos', [PhotoController::class, 'index']);
+Route::get('photos', [PhotoController::class, 'indexFiltered']);
+Route::get('photos/{id}', [PhotoController::class, 'show']);

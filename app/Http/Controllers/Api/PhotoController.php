@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 
@@ -77,5 +78,22 @@ class PhotoController extends Controller
                 'results' => '404 show API, result not found',
             ], 404);
         }
+    }
+
+    public function allCategories () 
+    {
+        $all = Category::with('photos')->orderBy('name', 'asc')->paginate();
+        if ($all) {
+            return response()->json([
+                'success' => true,
+                'results' => $all,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'response' => '404 allCategories API, results not found',
+            ], 404);
+        }
+    
     }
 }

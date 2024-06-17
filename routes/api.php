@@ -13,3 +13,5 @@ Route::get('photos/filtered', [PhotoController::class, 'indexFiltered']);
 Route::get('photos/{id}', [PhotoController::class, 'show']);
 
 //Route::post('contacts' , [LeadController::class , 'store']);
+
+Route::get('categories', [PhotoController::class, 'allCategories']);

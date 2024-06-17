@@ -10,14 +10,14 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">{{ __('User Dashboard') }}</div>
-    
+
                     <div class="card-body">
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                         @endif
-    
+
                         {{ __('You are logged in!') }}
                     </div>
                 </div>
@@ -30,27 +30,30 @@
             <h4>General infos: </h4>
         </div>
         <div>
-            <p>You have: <b>{{$count}}</b> photos into <a href="{{route('admin.photos.index')}}">database</a> , <b>{{$published}} of {{$count}}</b> published; the remaining <b>{{$count - $published}}</b> are waiting into <a href="{{route('admin.drafts.index')}}">drafts</a> section.</p>
+            <p>You have: <b>{{$count}}</b> photos into <a href="{{route('admin.photos.index')}}">database</a> ,
+                <b>{{$published}} of {{$count}}</b> published; the remaining <b>{{$count - $published}}</b> are waiting
+                into <a href="{{route('admin.drafts.index')}}">drafts</a> section.
+            </p>
         </div>
     </div>
 
 </section>
 
-    {{-- Initializing arrays --}}
-    @php       
-        $xValues = [];
-        $yValues = []; 
-    @endphp
+{{-- Initializing arrays --}}
+@php
+$xValues = [];
+$yValues = [];
+@endphp
 
-    {{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
-    @foreach ($categories as $category)
-        @php
-        if(!$category->photos->count() == 0){
-            array_push($xValues, $category->name);
-            array_push($yValues, $category->photos->count());
-        }
-        @endphp
-    @endforeach
+{{-- Iterating and assigning x axis to category name and y to n photos associated to it --}}
+@foreach ($categories as $category)
+@php
+if(!$category->photos->count() == 0){
+array_push($xValues, $category->name);
+array_push($yValues, $category->photos->count());
+}
+@endphp
+@endforeach
 <section id="graph">
     <div class="container">
         <h1 id="h1-graph" class="d-none sora-medium">Category to photos association</h1>
@@ -60,24 +63,25 @@
         <div id="chart-container" class="container-fluid">
             <canvas id="myChart"></canvas>
         </div>
+
         <div id="chart-info">
-            
+
             @forelse ($categories as $category)
 
-            @if (!$category->photos->count() == 0)        
-            <p class="text-capitalize" ><b>{{$category->name}}</b></p>
-            <p>Associated with {{$category->photos->count()}} 
+            @if (!$category->photos->count() == 0)
+            <p class="text-capitalize"><b>{{$category->name}}</b></p>
+            <p>Associated with {{$category->photos->count()}}
                 @if ($category->photos->count() == 1)
-                    photo
+                photo
                 @else
-                    photos
+                photos
                 @endif
-                </p>
+            </p>
             <hr>
             @endif
 
             @empty
-                <p>No info available about category -> photos associations</p>
+            <p>No info available about category -> photos associations</p>
             @endforelse
 
         </div>
@@ -91,6 +95,24 @@
     const xValues = @json($xValues);
     const yValues = @json($yValues);
     console.log('values: ', xValues, yValues);
+    const chart = document.getElementById('myChart');
+    const chartInfo = document.getElementById('chart-info');
+
+    const h1Info = document.getElementById('h1-graph');
+
+    
+if(xValues.length == 0 && yValues.length == 0)
+{
+    console.log('is empty!');
+    chart.remove();
+    chartInfo.remove();
+
+    h1Info.innerText = 'No associations available';
+    const temptext = document.createElement("h6");
+    temptext.innerText = "add some items";
+    
+    h1Info.insertAdjacentElement('beforeend', temptext);
+}
     
     // defining resize x-axis font resize function 
     function fontResize(chart) {
@@ -106,6 +128,7 @@
   Chart.defaults.global.defaultFontSize = newFontSize;
   chart.update();
 }
+
 
 
 // creating Chart
@@ -188,9 +211,11 @@ let myChart = new Chart("myChart", {
 
 /* test chart */
 function adjustChartHeight() {
-    var chartContainerWidth = document.getElementById('chart-container').offsetWidth;
-    var chartHeight = chartContainerWidth / 2; 
-    document.getElementById('myChart').style.height = chartHeight + 'px';
+    if(chart){
+        var chartContainerWidth = document.getElementById('chart-container').offsetWidth;
+        var chartHeight = chartContainerWidth / 2; 
+        chart.style.height = chartHeight + 'px';
+    }
 }
 
 window.addEventListener('resize', adjustChartHeight);

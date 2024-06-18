@@ -5,16 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>New message</title>
 </head>
 
 <body>
     <h1>You received a new message</h1>
-    <div id="div-img">
-        <p>Name: <span>{{$lead['name']}}</span></p>
-        <p>Name: <span>{{$lead['email']}}</span></p>
-        <p>Name:<span>{{$lead['message']}}</span></p>
-    </div>
+    <section>
+        <div id="div-img">
+            <div class="container-fluid p-2">
+                <p>Name: <span>{{$lead['name']}}</span></p>
+                <p>Mail: <span>{{$lead['email']}}</span></p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container mt-2">
+            <p class="border-1 rounded-2"><b>Content: </b>{{$lead['message']}}</p>
+        </div>
+    </section>
 </body>
 
 <style>
